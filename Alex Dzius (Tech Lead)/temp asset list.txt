@@ -1,0 +1,24 @@
+base game
+
+Dino & Movement 
+	Constant right w/ increasing speed over time (taken from highscore which adjusts speed)
+	Jump
+	Duck from stuff above
+	Dino itself changes sprite when alive/jump/dead
+	Collision detection between sprites and 
+Generation
+	Random Terrain Generation (in chunks)
+		Cactus
+		Terrain itself
+	Bird enemy spawning
+	Cloud Background movement
+	Dot Spawning & Bump Spawning along the way
+High Score System
+	End display of High Score
+	Animation when hit certain milestones
+Game Over / Restart screen
+
+debug:
+kill itself
+invincible/fly (testing generation)
+set speed (check for milestones at points)
