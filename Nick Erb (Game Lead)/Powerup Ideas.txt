@@ -1,0 +1,6 @@
+Powerups - Spawn in like obstacles, but are good. Add additional button to use the power-up.
+
+Focus - Press to begin to slow movement for a set amount of time, release to end it early.
+Reverse, reverse - Press to rewind movement for a set amount, release to end it early. Automatically triggers on death, to give another chance.
+Asteroid - Press to pull an asteroid to earth, destroying and inhibiting the spawn of obstacles for a duration.
+CHAAAAARGE - Press to charge significantly faster than the current movement speed, gaining i-frames and destroying objects that it comes in contact with.
