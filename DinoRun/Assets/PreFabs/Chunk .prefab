@@ -101,7 +101,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -115,7 +115,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 9215918849810911759}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunks:
   - {fileID: 9215918849810911759}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1953206233986785249, guid: 0aad92f61d8e870499d6769d16a328a0, type: 3}
+  - {fileID: 589529602157995234, guid: 4ac6412695a65c0479481a913969f233, type: 3}
   random: 0
+  layermask: 0

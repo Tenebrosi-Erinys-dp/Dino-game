@@ -14,12 +14,12 @@ public class ScoreText : MonoBehaviour
     // give outside objects an easy way to update
     public void UpdateScore()
     {
-        myTM.text = SpeedFromPoints.points.ToString();
+        myTM.text = PointsCalculation.points.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        UpdateScore();
     }
 }
