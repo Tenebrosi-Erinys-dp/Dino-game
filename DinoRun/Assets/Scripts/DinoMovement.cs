@@ -16,8 +16,9 @@ public class DinoMovement : MonoBehaviour
     {
         canJump = true;
         // if dino hits literally something -- TODO: add fix to only with object of type sprite
-        if (collision.gameObject.GetComponent<MapMovement>() != null)
+        if (collision.gameObject.GetComponent<CactusDeath>() == true)
         {
+            
             // check if object is sprite
 
             // display death screen & option to restart

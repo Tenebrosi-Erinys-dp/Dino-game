@@ -6,7 +6,7 @@ public class TerrainGeneration : MonoBehaviour
 {
     public GameObject[] chunks;
     public int random;
-
+    public int layermask = 1 << 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +16,19 @@ public class TerrainGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       generateTerrain();
+        random = Random.Range(0, chunks.Length);
+        print(random);
+        // FIX SMALL GAPS INSERTION
+        RaycastHit2D hit = Physics2D.Linecast(new Vector3(7, -3, 0), new Vector3(7.0000000000000000000000001f, -3, 0), layermask);
+        if(hit.collider == false)
+        {
+            generateTerrain(random);
+        }
+       
     }
-    void generateTerrain()
+    void generateTerrain(int random)
     {
-        random = Random.Range(1, chunks.Length - 1);
-        Instantiate(chunks[random], new Vector3(14, -3, 0), Quaternion.identity);
+        print(random);
+        Instantiate(chunks[random], new Vector3(13, -3, 0), Quaternion.identity);
     }
 }
