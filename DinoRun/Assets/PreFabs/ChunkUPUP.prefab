@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7726094936577763072}
   - component: {fileID: 1004591967991377008}
   - component: {fileID: 2853019073353644738}
-  m_Layer: 0
+  - component: {fileID: 861016664992057544}
+  m_Layer: 1
   m_Name: ChunkUPUP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +131,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!114 &2853019073353644738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,4 +144,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0e4665d2c7d540ad6d8622e1b0cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceTraveled: 0
+--- !u!114 &861016664992057544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589529602157995234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3a02e70f2b9ab4ebe110c734477081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
