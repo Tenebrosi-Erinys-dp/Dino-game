@@ -50,8 +50,8 @@ public class DinoMovement : MonoBehaviour
         // if duck
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
-            // change to duck animation
             // TODO: implement duck animation
+            dino.velocity = new Vector3(0, -6, 0);
         }
     }
 }
