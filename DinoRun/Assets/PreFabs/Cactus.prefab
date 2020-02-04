@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8519856005758227102}
   - component: {fileID: 2049750746655343344}
   - component: {fileID: 8224391937937434553}
-  - component: {fileID: -3334641179333781188}
   - component: {fileID: -6921409678627843905}
+  - component: {fileID: 9004423321752138879}
   m_Layer: 0
   m_Name: Cactus
   m_TagString: Untagged
@@ -116,7 +116,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -132,27 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3334641179333781188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4724277074367029115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64218fdfff4e84f44a649d63ad02b4fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cactees:
-  - {fileID: 4724277074367029115}
-  - {fileID: 8136680264719771956, guid: 8a9607993db0c4b448ec31f197a4b2f7, type: 3}
-  - {fileID: 9173899256348166685, guid: 1b6c67bbc23646849b1f3fa750855e17, type: 3}
-  - {fileID: 2819102826767953988, guid: 9b8e95bfb2768554ab5c41214bbc8a5b, type: 3}
-  - {fileID: 668675215111391023, guid: bce16f96869157f40b066f41d91ad259, type: 3}
-  - {fileID: 1492587454700214240, guid: 0c34ffdfc5ffafb48ae447a54077c4e8, type: 3}
-  random: 0
-  genrandom: 0
 --- !u!114 &-6921409678627843905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,5 +142,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdd0e4665d2c7d540ad6d8622e1b0cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9004423321752138879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724277074367029115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3a02e70f2b9ab4ebe110c734477081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
