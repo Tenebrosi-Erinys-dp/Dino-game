@@ -19,7 +19,7 @@ public class TerrainGeneration : MonoBehaviour
         random = Random.Range(0, chunks.Length);
         print(random);
         // FIX SMALL GAPS INSERTION
-        RaycastHit2D hit = Physics2D.Linecast(new Vector3(7, -3, 0), new Vector3(7.0000000000000000000000001f, -3, 0), layermask);
+        RaycastHit2D hit = Physics2D.Linecast(new Vector3(6.9999999f, -3, 0), new Vector3(7, -3, 0), layermask);
         if(hit.collider == false)
         {
             generateTerrain(random);
