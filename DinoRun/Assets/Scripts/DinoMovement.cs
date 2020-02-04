@@ -45,13 +45,26 @@ public class DinoMovement : MonoBehaviour
             {
                 // jump  velcotiy
                 dino.velocity = new Vector3(0, 5, 0);
+                if (Input.GetAxis("Vertical") < -sensitivity)
+                {
+                    // TODO: implement duck animation
+                    dino.velocity = new Vector3(0, -6, 0);
+
+                }
             }
         }
         // if duck
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
-            // TODO: implement duck animation
+            
             dino.velocity = new Vector3(0, -6, 0);
+            if (Input.GetAxis("Vertical") > sensitivity)
+            {
+                // jump  velcotiy
+                dino.velocity = new Vector3(0, 5, 0);
+            }
+            // TODO: implement duck animation
+            
         }
     }
 }
