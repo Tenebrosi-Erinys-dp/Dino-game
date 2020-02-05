@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 9215918849810911795}
   - component: {fileID: 9215918849810911792}
   - component: {fileID: 9215918849810911794}
-  - component: {fileID: 6407729353898372261}
-  m_Layer: 0
+  - component: {fileID: 1609778972898744947}
+  m_Layer: 1
   m_Name: 'Chunk '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 3
+  m_Constraints: 7
 --- !u!61 &9215918849810911792
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,8 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd0e4665d2c7d540ad6d8622e1b0cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceTraveled: 0
---- !u!114 &6407729353898372261
+--- !u!114 &1609778972898744947
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,12 +153,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9215918849810911759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c678e6b45e58304293d5cc05031784e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e3a02e70f2b9ab4ebe110c734477081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunks:
-  - {fileID: 9215918849810911759}
-  - {fileID: 1953206233986785249, guid: 0aad92f61d8e870499d6769d16a328a0, type: 3}
-  - {fileID: 589529602157995234, guid: 4ac6412695a65c0479481a913969f233, type: 3}
-  random: 0
-  layermask: 0
