@@ -29,7 +29,7 @@ public class HitGeneration : MonoBehaviour
         {
             Instantiate(cloud[0], new Vector3(13, (int)Random.Range(0, 4), 0), Quaternion.identity);
         }
-        if(genrandom > 10 && genrandom < 30)
+        if( genrandom > 10 && genrandom < 30)
         {
             Instantiate(veloc[0], new Vector3(13, (int)Random.Range(0, 4), 0), Quaternion.identity);
         }
