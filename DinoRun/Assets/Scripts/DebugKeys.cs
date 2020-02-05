@@ -28,5 +28,9 @@ public class DebugKeys : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
+        if (Input.GetKey("k"))
+        {
+            
+        }
     }
 }
