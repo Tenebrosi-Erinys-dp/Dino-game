@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: -3546859459842679098}
   - component: {fileID: 8810861630806613043}
   - component: {fileID: -1352913065214501634}
+  - component: {fileID: -5428124744339296049}
   m_Layer: 0
   m_Name: Cactus2
-  m_TagString: Untagged
+  m_TagString: IsSprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +117,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -154,5 +155,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e3a02e70f2b9ab4ebe110c734477081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5428124744339296049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8136680264719771956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452aeaf76a52ba0469ea988d7a76d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -9,12 +9,12 @@ public class ScoreText : MonoBehaviour
     void Start()
     {
         myTM = GetComponent<TextMesh>();
-        myTM.text = 0.ToString();
+        myTM.text = 00000.ToString();
     }
     // give outside objects an easy way to update
     public void UpdateScore()
     {
-        myTM.text = PointsCalculation.points.ToString();
+        myTM.text = PointsCalculation.points.ToString("00000");
     }
 
     // Update is called once per frame
