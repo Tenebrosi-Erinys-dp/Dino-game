@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5205528198715591672}
   - component: {fileID: 1760325145447622530}
   - component: {fileID: -5756695683767837691}
-  - component: {fileID: 2013157080982643072}
   - component: {fileID: 3387622801775908275}
+  - component: {fileID: 750063632607894829}
   m_Layer: 0
   m_Name: pteroo
   m_TagString: IsSprite
@@ -73,9 +73,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4d22204783fa6f54d922dac56e49a945, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.84648275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -115,25 +115,13 @@ CircleCollider2D:
   m_GameObject: {fileID: 3386261271466104689}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2013157080982643072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3386261271466104689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd0e4665d2c7d540ad6d8622e1b0cc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3387622801775908275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,3 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3a02e70f2b9ab4ebe110c734477081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &750063632607894829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3386261271466104689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bde8090bc928442bc2c21c2ffe9507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10

@@ -12,13 +12,15 @@ public class DinoMovement : MonoBehaviour
     public Sprite dead;
     public GameObject canvas;
     AudioSource audioJump;
+    float sensitivity = 0.00001f;
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.GetComponent<Animator>().SetInteger("State", 0);
         audioJump = GetComponent<AudioSource>();
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
-        dino.GetComponent<SpriteRenderer>().sprite = running;
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,34 +37,52 @@ public class DinoMovement : MonoBehaviour
                 highscore = PointsCalculation.points;
             }
             dino.GetComponent<SpriteRenderer>().sprite = dead;
+
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         canJump = true;
-        dino.GetComponent<SpriteRenderer>().sprite = running;
+        if (Input.GetAxis("Vertical") < -sensitivity)
+        {
+            gameObject.GetComponent<Animator>().SetInteger("State", 1);
+        }
+        else
+        {
+            gameObject.GetComponent<Animator>().SetInteger("State", 0);
+        }
+
+        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
+        dino.GetComponent<SpriteRenderer>().sprite = running;
         canJump = false;
         audioJump.Play(0);
+        if (Input.GetAxis("Vertical") < -sensitivity)
+        {
+            dino.GetComponent<SpriteRenderer>().sprite = ducking;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        float sensitivity = 0.00001f;
+        if (Input.GetAxis("Vertical") < -sensitivity)
+        {
+            dino.GetComponent<SpriteRenderer>().sprite = ducking;
+        }
         // if jump
         if (canJump == true)
         {
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // jump  velcotiy
-                dino.velocity = new Vector3(0, 5.5f, 0);
+                dino.velocity = new Vector3(0, 6.5f, 0);
                 if (Input.GetAxis("Vertical") < -sensitivity)
                 {
                     // TODO: implement duck animation
-                    dino.velocity = new Vector3(0, -6, 0);
+                    dino.velocity = new Vector3(0, -8, 0);
 
                 }
             }
@@ -71,18 +91,13 @@ public class DinoMovement : MonoBehaviour
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             dino.GetComponent<SpriteRenderer>().sprite = ducking;
-            dino.velocity = new Vector3(0, -6, 0);
+            dino.velocity = new Vector3(0, -8, 0);
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // jump  velcotiy
-                dino.velocity = new Vector3(0, 5.5f, 0);
+                dino.velocity = new Vector3(0, 6.5f, 0);
             }
-            // TODO: implement duck animation
             
-        }
-        if(Input.GetKey(""))
-        {
-            dino.GetComponent<SpriteRenderer>().sprite = running;
         }
     }
 }
