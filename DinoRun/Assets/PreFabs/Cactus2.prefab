@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8455795670002110870}
   - component: {fileID: 6475713964772330892}
   - component: {fileID: 3123378182597864304}
-  - component: {fileID: -3546859459842679098}
+  - component: {fileID: 4900370965224421237}
   - component: {fileID: 8810861630806613043}
   - component: {fileID: -1352913065214501634}
   - component: {fileID: -5428124744339296049}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cactus2
   m_TagString: IsSprite
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8136680264719771956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6df6a5f7d4c273347a93021f585fb078, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -107,8 +107,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-3546859459842679098
-BoxCollider2D:
+--- !u!60 &4900370965224421237
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -130,9 +130,31 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.5}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.034889054, y: 0.15971458}
+      - {x: -0.042595837, y: 0.1463417}
+      - {x: -0.044997565, y: 0.057814494}
+      - {x: -0.051250964, y: 0.053909287}
+      - {x: -0.058733657, y: 0.071186505}
+      - {x: -0.0861166, y: 0.06757234}
+      - {x: -0.08669563, y: 0.051746897}
+      - {x: -0.09696877, y: 0.047927104}
+      - {x: -0.09456462, y: -0.06}
+      - {x: -0.06070657, y: -0.09374487}
+      - {x: -0.04440148, y: -0.09352213}
+      - {x: -0.044129208, y: -0.18196878}
+      - {x: 0.0249479, y: -0.18196878}
+      - {x: 0.025279181, y: -0.03864173}
+      - {x: 0.05877324, y: -0.03767468}
+      - {x: 0.05780212, y: -0.021098722}
+      - {x: 0.07628618, y: -0.0054396093}
+      - {x: 0.07503522, y: 0.08749376}
+      - {x: 0.05213384, y: 0.11066711}
+      - {x: 0.040207174, y: 0.09912061}
+      - {x: 0.022875063, y: 0.10100829}
+      - {x: 0.026481293, y: 0.13398956}
+      - {x: 0.017300054, y: 0.16196878}
 --- !u!114 &8810861630806613043
 MonoBehaviour:
   m_ObjectHideFlags: 0
