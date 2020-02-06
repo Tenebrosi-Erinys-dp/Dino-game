@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4651595319759293725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: cc31b1623c157c7419932cafaae22ede, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a7c8932cff9754ead752ed2fcb5998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  running: {fileID: 21300000, guid: 75d5bc9f21a8256459a6622f698a80c5, type: 3}
-  ducking: {fileID: 21300000, guid: 20cbde2737f1345429edcd01fb1b7d1a, type: 3}
+  running: {fileID: 4614470516747637247, guid: 75d5bc9f21a8256459a6622f698a80c5, type: 3}
+  ducking: {fileID: 8601849492608117537, guid: 20cbde2737f1345429edcd01fb1b7d1a, type: 3}
   dead: {fileID: 21300000, guid: 4f856c809ed78f343948573f08a99c0f, type: 3}
+  canvas: {fileID: 0}

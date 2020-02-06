@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1021207589449016318}
   - component: {fileID: 536438895282036591}
   - component: {fileID: 1345213897174272094}
-  - component: {fileID: -4306445942466445811}
+  - component: {fileID: 1583136855934155872}
   - component: {fileID: -3678356084981774386}
   - component: {fileID: 7733971639569920705}
   - component: {fileID: 2018724296985881448}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Cactus4
   m_TagString: IsSprite
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2819102826767953988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8c2739923226bf94eb36ae89d2c3120c, type: 3}
   m_Color: {r: 0.12519169, g: 1, b: 0, a: 1}
   m_FlipX: 0
@@ -107,8 +107,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-4306445942466445811
-BoxCollider2D:
+--- !u!60 &1583136855934155872
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0, y: 0.02, z: 0, w: 0.03}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1, y: 1}
@@ -130,9 +130,36 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.25}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.036984287, y: 0.092307605}
+      - {x: 0.020142842, y: 0.07357487}
+      - {x: 0.010560865, y: 0.070276804}
+      - {x: 0.011021782, y: 0.110936165}
+      - {x: -0.01255438, y: 0.13160853}
+      - {x: -0.020851452, y: 0.1302462}
+      - {x: -0.020842612, y: 0.122572504}
+      - {x: -0.029349122, y: 0.11846489}
+      - {x: -0.035550736, y: 0.109941736}
+      - {x: -0.03879418, y: 0.06939407}
+      - {x: -0.0485178, y: 0.072752}
+      - {x: -0.059445783, y: 0.08180353}
+      - {x: -0.058817532, y: 0.090160765}
+      - {x: -0.069981545, y: 0.09182603}
+      - {x: -0.070915245, y: 0.080750346}
+      - {x: -0.07933654, y: 0.07946179}
+      - {x: -0.08668309, y: 0.069123164}
+      - {x: -0.09148624, y: -0.010173003}
+      - {x: -0.043536298, y: -0.04993666}
+      - {x: -0.04088305, y: -0.13853307}
+      - {x: -0.039738465, y: -0.14024621}
+      - {x: -0.02997384, y: -0.15063195}
+      - {x: -0.00043495, y: -0.15046369}
+      - {x: 0.012119453, y: -0.13931884}
+      - {x: 0.011710875, y: -0.04163971}
+      - {x: 0.028121158, y: -0.040414225}
+      - {x: 0.06211945, y: -0.010681162}
+      - {x: 0.060416497, y: 0.07068116}
 --- !u!114 &-3678356084981774386
 MonoBehaviour:
   m_ObjectHideFlags: 0
