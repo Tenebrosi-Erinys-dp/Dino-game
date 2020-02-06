@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/* DinoMovement.cs
+ * By: Alex Dzius
+ * Last Edited: 2/11/2020
+ * Desc: Player Controller for the Dino, allowing for the movement, jumping and the changes in animations
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,12 +57,11 @@ public class DinoMovement : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 0);
         }
-
-        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        dino.GetComponent<SpriteRenderer>().sprite = running;
+        // TODO: ADD THE FIX TO GET STATE 2 WHICH IS THE STANDARD STAY LAYER
+        gameObject.GetComponent<Animator>().SetInteger("State", 2);
         canJump = false;
         audioJump.Play(0);
         if (Input.GetAxis("Vertical") < -sensitivity)
@@ -82,7 +87,7 @@ public class DinoMovement : MonoBehaviour
                 if (Input.GetAxis("Vertical") < -sensitivity)
                 {
                     // TODO: implement duck animation
-                    dino.velocity = new Vector3(0, -8, 0);
+                    dino.velocity = new Vector3(0, -10, 0);
 
                 }
             }
@@ -91,7 +96,7 @@ public class DinoMovement : MonoBehaviour
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             dino.GetComponent<SpriteRenderer>().sprite = ducking;
-            dino.velocity = new Vector3(0, -8, 0);
+            dino.velocity = new Vector3(0, -10, 0);
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // jump  velcotiy
