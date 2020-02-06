@@ -19,11 +19,11 @@ public class HitGeneration : MonoBehaviour
     void Update()
     {
         genrandom = Random.Range(0, 12000);
-        if (genrandom < 100)
+        if (genrandom > 50 && genrandom < 140)
         {
             random = Random.Range(0, cactees.Length);
             // if a certain condition is given during the generation
-            Instantiate(cactees[random], new Vector3(13, -2.25f, 0), Quaternion.identity);
+            Instantiate(cactees[random], new Vector3(13, -1.75f, 0), Quaternion.identity);
         }
         if( genrandom < 10)
         {
