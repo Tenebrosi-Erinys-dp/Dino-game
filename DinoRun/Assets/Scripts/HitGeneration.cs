@@ -9,6 +9,7 @@ public class HitGeneration : MonoBehaviour
     public GameObject[] veloc;
     public int random;
     public int genrandom;
+    public int velocrandom;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,8 @@ public class HitGeneration : MonoBehaviour
         }
         if( genrandom > 10 && genrandom < 30)
         {
-            Instantiate(veloc[0], new Vector3(13, (int)Random.Range(0, 4), 0), Quaternion.identity);
+            velocrandom = (int)Random.Range(-2, 0);
+            Instantiate(veloc[0], new Vector3(13, velocrandom+.25f, 0), Quaternion.identity);
         }
 
     }

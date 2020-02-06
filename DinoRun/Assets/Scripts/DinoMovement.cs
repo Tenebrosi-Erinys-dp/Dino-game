@@ -68,7 +68,10 @@ public class DinoMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetAxis("Vertical") < -sensitivity)
+        {
+            dino.GetComponent<SpriteRenderer>().sprite = ducking;
+        }
         // if jump
         if (canJump == true)
         {
