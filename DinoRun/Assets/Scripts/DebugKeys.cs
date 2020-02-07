@@ -15,7 +15,7 @@ public class DebugKeys : MonoBehaviour
     {
         if (Input.GetKey("r"))
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("TitleScreen");
         }
         if (Input.GetKey("space"))
         {

@@ -20,6 +20,5 @@ public class ResetButton : MonoBehaviour
     }
     void ResetCall()
     {
-        SceneManager.LoadScene("SampleScene");
     }
 }
