@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 6349927801661606448}
   - component: {fileID: 8519856005758227102}
   - component: {fileID: 2049750746655343344}
-  - component: {fileID: 8224391937937434553}
+  - component: {fileID: 2210313454091226638}
   - component: {fileID: -6921409678627843905}
   - component: {fileID: 9004423321752138879}
-  m_Layer: 0
+  - component: {fileID: 467924052955985321}
+  m_Layer: 1
   m_Name: Cactus
-  m_TagString: Untagged
+  m_TagString: IsSprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4724277074367029115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.01, y: -0.03, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c31d646eb73613d49950a9bd769714bd, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: a42d35a8b0b196a4d9c087568270a668, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,8 +107,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!61 &8224391937937434553
-BoxCollider2D:
+--- !u!60 &2210313454091226638
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,22 +117,51 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 95665b506de5c7745a7b294306f96fdd, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.43, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.009980259, y: 0.23360017}
+      - {x: -0.021496182, y: 0.23324808}
+      - {x: -0.033642475, y: 0.2223702}
+      - {x: -0.048985116, y: 0.2089053}
+      - {x: -0.050643977, y: 0.17251557}
+      - {x: -0.05139609, y: 0.13144672}
+      - {x: -0.04992276, y: 0.13165511}
+      - {x: -0.06659412, y: 0.13345401}
+      - {x: -0.07073822, y: 0.14445755}
+      - {x: -0.10287343, y: 0.14557865}
+      - {x: -0.10925323, y: 0.13462141}
+      - {x: -0.1251071, y: 0.13393225}
+      - {x: -0.12716515, y: -0.020066924}
+      - {x: -0.080843695, y: -0.06557333}
+      - {x: -0.048779573, y: -0.065967895}
+      - {x: -0.047262046, y: -0.15389343}
+      - {x: -0.066182956, y: -0.15383917}
+      - {x: -0.06562492, y: -0.19321425}
+      - {x: 0.038839217, y: -0.19321425}
+      - {x: 0.035334636, y: -0.054062568}
+      - {x: 0.063990936, y: -0.050400253}
+      - {x: 0.11395232, y: 0.004765145}
+      - {x: 0.11450266, y: 0.06592176}
+      - {x: 0.11599248, y: 0.13906118}
+      - {x: 0.096737444, y: 0.15866509}
+      - {x: 0.06440987, y: 0.16267318}
+      - {x: 0.047465812, y: 0.14035556}
+      - {x: 0.037611675, y: 0.011201508}
+      - {x: 0.03658251, y: 0.17382513}
+      - {x: 0.03322731, y: 0.21335518}
 --- !u!114 &-6921409678627843905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,5 +184,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e3a02e70f2b9ab4ebe110c734477081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &467924052955985321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724277074367029115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452aeaf76a52ba0469ea988d7a76d39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
