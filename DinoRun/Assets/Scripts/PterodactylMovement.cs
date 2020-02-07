@@ -5,15 +5,18 @@ using UnityEngine;
 public class PterodactylMovement : MonoBehaviour
 {
     Rigidbody2D dino;
+    public GameObject canvas;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<HighScore>() == true)
+        if (collision.gameObject.tag == "IsSprite")
         {
+            canvas.SetActive(true);
             Time.timeScale = 0f;
             if (PointsCalculation.points > DinoMovement.highscore)
             {
                 DinoMovement.highscore = PointsCalculation.points;
             }
+
         }
     }
     // Start is called before the first frame update
@@ -21,6 +24,7 @@ public class PterodactylMovement : MonoBehaviour
     {
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
+        gameObject.GetComponent<Animator>().SetInteger("State", 0);
 
     }
 
@@ -34,12 +38,17 @@ public class PterodactylMovement : MonoBehaviour
             {
             // jump  velcotiy
             dino.velocity = new Vector3(0, 4, 0);
+                gameObject.GetComponent<Animator>().SetInteger("State", 1);
             }
-    
             // if duck
-            if (Input.GetAxis("Vertical") < -sensitivity)
+            else if (Input.GetAxis("Vertical") < -sensitivity)
             {
             dino.velocity = new Vector3(0, -4, 0);
+                gameObject.GetComponent<Animator>().SetInteger("State", 2);
+            } else
+            {
+                gameObject.GetComponent<Animator>().SetInteger("State", 0);
+                dino.velocity = new Vector3(0, 0, 0);
             }
         } else
         {

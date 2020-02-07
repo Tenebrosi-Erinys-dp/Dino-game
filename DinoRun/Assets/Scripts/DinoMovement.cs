@@ -83,7 +83,7 @@ public class DinoMovement : MonoBehaviour
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // jump  velcotiy
-                dino.velocity = new Vector3(0, 6.5f, 0);
+                dino.velocity = new Vector3(0, 16.5f, 0);
                 if (Input.GetAxis("Vertical") < -sensitivity)
                 {
                     // TODO: implement duck animation
@@ -100,7 +100,7 @@ public class DinoMovement : MonoBehaviour
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // jump  velcotiy
-                dino.velocity = new Vector3(0, 6.5f, 0);
+                dino.velocity = new Vector3(0, 16.5f, 0);
             }
             
         }
