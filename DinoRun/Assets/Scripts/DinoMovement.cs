@@ -23,6 +23,8 @@ public class DinoMovement : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
         audioJump = GetComponent<AudioSource>();
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
@@ -52,10 +54,14 @@ public class DinoMovement : MonoBehaviour
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 1);
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
         }
         else
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 0);
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -67,6 +73,7 @@ public class DinoMovement : MonoBehaviour
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             dino.GetComponent<SpriteRenderer>().sprite = ducking;
+
         }
     }
 
@@ -83,11 +90,15 @@ public class DinoMovement : MonoBehaviour
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // jump  velcotiy
-                dino.velocity = new Vector3(0, 16.5f, 0);
+                dino.velocity = new Vector3(0, 22.5f, 0);
+                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
                 if (Input.GetAxis("Vertical") < -sensitivity)
                 {
                     // TODO: implement duck animation
                     dino.velocity = new Vector3(0, -10, 0);
+                    gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
+                    gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
 
                 }
             }
@@ -97,10 +108,14 @@ public class DinoMovement : MonoBehaviour
         {
             dino.GetComponent<SpriteRenderer>().sprite = ducking;
             dino.velocity = new Vector3(0, -10, 0);
+            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // jump  velcotiy
-                dino.velocity = new Vector3(0, 16.5f, 0);
+                dino.velocity = new Vector3(0, 22.5f, 0);
+                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
             }
             
         }

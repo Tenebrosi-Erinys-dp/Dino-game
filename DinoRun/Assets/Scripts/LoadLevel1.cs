@@ -20,6 +20,6 @@ public class LoadLevel1 : MonoBehaviour
     }
     void ResetCall()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("SampleScene");
     }
 }
