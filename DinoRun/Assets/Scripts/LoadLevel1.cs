@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class ResetButton : MonoBehaviour
+public class LoadLevel1 : MonoBehaviour
 {
     public Button b;
     // Start is called before the first frame update
@@ -20,5 +20,6 @@ public class ResetButton : MonoBehaviour
     }
     void ResetCall()
     {
+        SceneManager.LoadScene("Level1");
     }
 }
