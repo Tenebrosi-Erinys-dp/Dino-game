@@ -919,6 +919,7 @@ MonoBehaviour:
   - {fileID: 3386261271466104689, guid: 02d5baf55d1b61845854015a10b73f95, type: 3}
   random: 0
   genrandom: 0
+  velocrandom: 0
 --- !u!114 &1020770501
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -5756695683767837691}
   - component: {fileID: 3387622801775908275}
   - component: {fileID: 750063632607894829}
+  - component: {fileID: 7524621195743160970}
   m_Layer: 0
   m_Name: pteroo
   m_TagString: IsSprite
@@ -147,3 +148,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!95 &7524621195743160970
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3386261271466104689}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7ca83a9a3866cf42bc13a6a63384d91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
