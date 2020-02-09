@@ -12,12 +12,16 @@ public class DinoMovement : MonoBehaviour
 {
     Rigidbody2D dino;
     bool canJump = true;
+    private bool hasFaded = false;
     public static int highscore;
+    public int temppoints;
     public Sprite running;
     public Sprite ducking;
     public Sprite dead;
     public GameObject canvas;
+    public GameObject whitesquare;
     AudioSource audioJump;
+    public int count;
     private float sensitivity = 0.00001f;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +33,7 @@ public class DinoMovement : MonoBehaviour
         audioJump = GetComponent<AudioSource>();
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
-        
+
     }
     // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
@@ -42,7 +46,7 @@ public class DinoMovement : MonoBehaviour
         {
             canvas.SetActive(true);
             Time.timeScale = 0f;
-            if(PointsCalculation.points > highscore)
+            if (PointsCalculation.points > highscore)
             {
                 highscore = PointsCalculation.points;
             }
@@ -75,7 +79,10 @@ public class DinoMovement : MonoBehaviour
         // set the idle animation and call the jump sound
         gameObject.GetComponent<Animator>().SetInteger("State", 2);
         canJump = false;
-        audioJump.Play(0);
+        if (Input.GetAxis("Vertical") > sensitivity)
+        {
+            audioJump.Play(0);
+        }
         // if during the exit down is pressed, change the sprite to ducking sprite
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
@@ -98,7 +105,7 @@ public class DinoMovement : MonoBehaviour
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // set the proper jump velocity and right hitbox
-                dino.velocity = new Vector3(0, 22.5f, 0);
+                dino.velocity = new Vector3(0, 19.5f, 0);
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                 gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
                 if (Input.GetAxis("Vertical") < -sensitivity)
@@ -115,18 +122,42 @@ public class DinoMovement : MonoBehaviour
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             // set the fall velocity and right hitbox
-            dino.GetComponent<SpriteRenderer>().sprite = ducking;
             dino.velocity = new Vector3(0, -10, 0);
             gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
+            gameObject.GetComponent<Animator>().SetInteger("State", 1);
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // set the proper jump velocity and right hitbox
-                dino.velocity = new Vector3(0, 22.5f, 0);
+                dino.velocity = new Vector3(0, 19.5f, 0);
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                 gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
             }
+
+        }
+        // if 100 points are reached, repeatedly close and open the white block above the score to provide the animation
+        if (PointsCalculation.points % 100 == 0 && PointsCalculation.points != 0)
+        {
+            if (!hasFaded)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    StartCoroutine(Fade(whitesquare, 0.1f));
+                    
+                }
+                whitesquare.SetActive(false);
+            }
             
         }
+    }
+
+    public IEnumerator Fade(GameObject obj, float seconds)
+    {
+        hasFaded = true;
+        obj.SetActive(false);
+        yield return new WaitForSeconds(seconds);
+        obj.SetActive(true);
+        yield return new WaitForSeconds(0.1f); // Appear for one second
+        hasFaded = false;
     }
 }

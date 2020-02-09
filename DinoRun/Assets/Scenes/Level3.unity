@@ -330,7 +330,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 918430846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e1f7fbdc982fc438af7195727fa41a, type: 3}
+  m_Script: {fileID: 11500000, guid: c9ab41e41b3ddc34ea70d6bb9d4fcdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   b: {fileID: 918430849}
@@ -572,11 +572,13 @@ MonoBehaviour:
   - {fileID: 1492587454700214240, guid: 0c34ffdfc5ffafb48ae447a54077c4e8, type: 3}
   cloud:
   - {fileID: 5941237220385232473, guid: d4f7c40d3cded6c4ba34245d10a5917d, type: 3}
-  veloc:
-  - {fileID: 3386261271466104689, guid: 02d5baf55d1b61845854015a10b73f95, type: 3}
+  ptero: []
   random: 0
   genrandom: 0
-  velocrandom: 0
+  pterorandom: 0
+  lastCact: 0
+  lastCloud: 0
+  lastPtero: 0
 --- !u!114 &1020770501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1197,6 +1199,11 @@ PrefabInstance:
     - target: {fileID: 7052476330578070694, guid: 742317730884b8f44bc8bd34162c2b82,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8447274209074458276, guid: 742317730884b8f44bc8bd34162c2b82,
+        type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

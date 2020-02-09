@@ -24,6 +24,6 @@ public class FireballMovement : MonoBehaviour
         // calculate the speed at any given frame
         speed = 10 + PointsCalculation.points / 5000f;
         // give the fireball the below speed which increases steadily over time
-        Fireball.transform.Translate(new Vector2(-0.8f*1.2f, -0.2f*1.2f) * speed * 1.25f * Time.deltaTime);
+        Fireball.transform.Translate(new Vector2(-0.8f*1.2f, -0.2f*1.6f) * speed * 1.25f * Time.deltaTime);
     }
 }
