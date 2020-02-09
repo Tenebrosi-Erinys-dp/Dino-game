@@ -12,11 +12,17 @@ public class PterodactylMovement : MonoBehaviour
     Rigidbody2D dino;
     public GameObject canvas;
     // when the pterodactyl hits an enemy object
+    public IEnumerator Anim()
+    {
+        gameObject.GetComponent<Animator>().SetInteger("State", 3);
+        yield return new WaitForSeconds(30);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // if object is a sprite, call the deathscreen and kill it
         if (collision.gameObject.tag == "IsSprite")
         {
+            StartCoroutine(Anim());
             canvas.SetActive(true);
             Time.timeScale = 0f;
             if (PointsCalculation.points > DinoMovement.highscore)
@@ -71,4 +77,5 @@ public class PterodactylMovement : MonoBehaviour
             dino.position = new Vector3(transform.position.x, 3.99f, transform.position.z);
         }
     }
+    
 }

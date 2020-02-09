@@ -16,6 +16,7 @@ public class FireballMovement : MonoBehaviour
     void Start()
     {
         Fireball = GetComponent<Rigidbody2D>();
+        gameObject.GetComponent<Animator>().SetInteger("State", 0);
     }
 
     // Update is called once per frame
