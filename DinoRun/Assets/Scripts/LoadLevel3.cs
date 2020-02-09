@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* LoadLevel2.cs
+ * By: Alex Dzius
+ * Last Edited: 2/10/2020
+ * Description: Code that allows the loading of Level 2, the velociraptor level. 
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +14,7 @@ public class LoadLevel3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // get the button and add listener to execute function resetcall if button is pressed
         Button but = b.GetComponent<Button>();
         but.onClick.AddListener(ResetCall);
     }
@@ -20,6 +26,7 @@ public class LoadLevel3 : MonoBehaviour
     }
     void ResetCall()
     {
+        // load the velociraptor scene
         SceneManager.LoadScene("Level3");
     }
 }

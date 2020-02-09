@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* VelocMove.cs
+ * By: Alex Dzius
+ * Last Edited: 2/10/2020
+ * Description: Code that allows for the movement, death, animations and soundeffects of the velociraptor in its level. 
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +11,6 @@ public class VelocMove : MonoBehaviour
 {
     Rigidbody2D dino;
     bool canJump = true;
-    public static int highscore;
     public Sprite running;
     public Sprite ducking;
     public Sprite dead;
@@ -16,6 +20,7 @@ public class VelocMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // set the animation, time, sounds and rigidbody to the right state
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
         audioJump = GetComponent<AudioSource>();
         dino = GetComponent<Rigidbody2D>();
@@ -26,26 +31,29 @@ public class VelocMove : MonoBehaviour
     {
         canJump = true;
         audioJump.Stop();
-        // if dino hits literally something -- TODO: add fix to only with object of type sprite
-
+        // if dino hits literally something that is an enemy sprite
         if (collision.gameObject.tag == "IsSprite")
         {
+            // launch deathscreen and set highscore
             canvas.SetActive(true);
             Time.timeScale = 0f;
-            if (PointsCalculation.points > highscore)
+            if (PointsCalculation.points > DinoMovement.highscore)
             {
-                highscore = PointsCalculation.points;
+                DinoMovement.highscore = PointsCalculation.points;
             }
 
         }
     }
+    // when the dino is during a collision, which is during the ground
     private void OnCollisionStay2D(Collision2D collision)
     {
         canJump = true;
+        // load the ducking animation if down is pressed
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 1);
         }
+        // load the running animation if up is pressed
         else
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 0);
@@ -53,7 +61,7 @@ public class VelocMove : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // TODO: ADD THE FIX TO GET STATE 2 WHICH IS THE STANDARD STAY LAYER
+        // set the idle animation and call the jump sound
         gameObject.GetComponent<Animator>().SetInteger("State", 2);
         canJump = false;
         audioJump.Play(0);
@@ -62,28 +70,30 @@ public class VelocMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if jump
+        // if jumping is possible
         if (canJump == true)
         {
+            // if up is pressed
             if (Input.GetAxis("Vertical") > sensitivity)
             {
-                // jump  velcotiy
+                // start jumping
                 dino.velocity = new Vector3(0, 150f, 0);
                 if (Input.GetAxis("Vertical") < -sensitivity)
                 {
-                    // TODO: implement duck animation
+                    // if pressed down again, move down
                     dino.velocity = new Vector3(0, -30, 0);
 
                 }
             }
         }
-        // if duck
+        // if down is pressed
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
+            // start ducking
             dino.velocity = new Vector3(0, -30, 0);
             if (Input.GetAxis("Vertical") > sensitivity)
             {
-                // jump  velcotiy
+                // if up is pressed again, move up
                 dino.velocity = new Vector3(0, 150f, 0);
             }
 

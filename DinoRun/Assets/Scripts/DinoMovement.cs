@@ -1,7 +1,7 @@
 ﻿/* DinoMovement.cs
  * By: Alex Dzius
- * Last Edited: 2/11/2020
- * Desc: Player Controller for the Dino, allowing for the movement, jumping and the changes in animations
+ * Last Edited: 2/10/2020
+ * Description: Code that allows for movement, change in hitbox, animation and sound effects throughout the game. 
  */
 
 using System.Collections;
@@ -18,10 +18,11 @@ public class DinoMovement : MonoBehaviour
     public Sprite dead;
     public GameObject canvas;
     AudioSource audioJump;
-    float sensitivity = 0.00001f;
+    private float sensitivity = 0.00001f;
     // Start is called before the first frame update
     void Start()
     {
+        // setup the right hitbox size, the right animation, audioclip, time and rigidbody.
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
@@ -30,12 +31,13 @@ public class DinoMovement : MonoBehaviour
         Time.timeScale = 1f;
         
     }
+    // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
     {
         canJump = true;
+        // stop the sound effect
         audioJump.Stop();
-        // if dino hits literally something -- TODO: add fix to only with object of type sprite
-
+        // if dino hits literally something of tag sprite, start the death sequence and store the highscore
         if (collision.gameObject.tag == "IsSprite")
         {
             canvas.SetActive(true);
@@ -48,15 +50,18 @@ public class DinoMovement : MonoBehaviour
 
         }
     }
+    // when the dino is during a collision, which is during the ground
     private void OnCollisionStay2D(Collision2D collision)
     {
         canJump = true;
+        // load the ducking animation and hitbox if down is pressed
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 1);
             gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
         }
+        // load the running animation and hitbox elsewhere
         else
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 0);
@@ -64,15 +69,17 @@ public class DinoMovement : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
         }
     }
+    // when the dino leaves a collision, during a jump
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // TODO: ADD THE FIX TO GET STATE 2 WHICH IS THE STANDARD STAY LAYER
+        // set the idle animation and call the jump sound
         gameObject.GetComponent<Animator>().SetInteger("State", 2);
         canJump = false;
         audioJump.Play(0);
+        // if during the exit down is pressed, change the sprite to ducking sprite
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
-            dino.GetComponent<SpriteRenderer>().sprite = ducking;
+            gameObject.GetComponent<Animator>().SetInteger("State", 3);
 
         }
     }
@@ -80,22 +87,23 @@ public class DinoMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // at any given point where down is pressed, change the aimation to ducking
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
-            dino.GetComponent<SpriteRenderer>().sprite = ducking;
+            gameObject.GetComponent<Animator>().SetInteger("State", 3);
         }
-        // if jump
+        // if jumping 
         if (canJump == true)
         {
             if (Input.GetAxis("Vertical") > sensitivity)
             {
-                // jump  velcotiy
+                // set the proper jump velocity and right hitbox
                 dino.velocity = new Vector3(0, 22.5f, 0);
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                 gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
                 if (Input.GetAxis("Vertical") < -sensitivity)
                 {
-                    // TODO: implement duck animation
+                    // set the fall velocity and right hitbox
                     dino.velocity = new Vector3(0, -10, 0);
                     gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
                     gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
@@ -103,16 +111,17 @@ public class DinoMovement : MonoBehaviour
                 }
             }
         }
-        // if duck
+        // if ducking
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
+            // set the fall velocity and right hitbox
             dino.GetComponent<SpriteRenderer>().sprite = ducking;
             dino.velocity = new Vector3(0, -10, 0);
             gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
             if (Input.GetAxis("Vertical") > sensitivity)
             {
-                // jump  velcotiy
+                // set the proper jump velocity and right hitbox
                 dino.velocity = new Vector3(0, 22.5f, 0);
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                 gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);

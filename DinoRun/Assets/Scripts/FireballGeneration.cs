@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* FireballGeneration.cs
+ * By: Alex Dzius
+ * Last Edited: 2/10/2020
+ * Description: Code that generates the fireballs at given randomized time and position.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +20,7 @@ public class FireballGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // generate a large number, and if a small range of numbers is hit, generate a fireball in a randomized position.
         genrandom = Random.Range(0, 12000);
         if(genrandom < 20)
         {

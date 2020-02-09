@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -915,11 +915,10 @@ MonoBehaviour:
   - {fileID: 1492587454700214240, guid: 0c34ffdfc5ffafb48ae447a54077c4e8, type: 3}
   cloud:
   - {fileID: 5941237220385232473, guid: d4f7c40d3cded6c4ba34245d10a5917d, type: 3}
-  veloc:
-  - {fileID: 3386261271466104689, guid: 02d5baf55d1b61845854015a10b73f95, type: 3}
+  ptero: []
   random: 0
   genrandom: 0
-  velocrandom: 0
+  pterorandom: 0
 --- !u!114 &1020770501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,7 +984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 131, y: 179.5}
+  m_AnchoredPosition: {x: 160, y: 197}
   m_SizeDelta: {x: 160, y: 107.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393412103
@@ -1001,7 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
