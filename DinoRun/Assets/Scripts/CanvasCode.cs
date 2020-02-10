@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿/* CanvasCode.cs
+ * By: Alex Dzius
+ * Last Edited: 2/10/2020
+ * Description: Deactivates the Death Screen Canvas every time any Scene is loaded.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CanvasCode : MonoBehaviour
 {
-    // public GameObject canvas;
     // Start is called before the first frame update
     void Start()
     {
-        //canvas = GetComponent<GameObject>();
+        //deactivates the canvas on start
         gameObject.SetActive(false);
     }
 

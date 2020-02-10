@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 103118148848335666}
   - component: {fileID: 6522506988835040011}
   - component: {fileID: 5282120432175700165}
-  - component: {fileID: -7646398015244220245}
+  - component: {fileID: -2984127894008943088}
   - component: {fileID: 2518027318181199997}
   - component: {fileID: 2380809144029164879}
   m_Layer: 1
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6899430129724513921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,8 +74,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e3bd805786b2f75429e0cb157e509e9a, type: 3}
-  m_Color: {r: 0, g: 0.34345746, b: 1, a: 1}
+  m_Sprite: {fileID: -7250195882505504687, guid: 5275390fd783f2e41a5e7266631ea76d,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,8 +107,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-7646398015244220245
-CircleCollider2D:
+--- !u!60 &-2984127894008943088
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,8 +121,94 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.86, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.19, y: 0.32999998}
+      - {x: 0.12, y: 0.35999998}
+      - {x: 0.01, y: 0.32}
+      - {x: -0.12, y: 0.22}
+      - {x: -0.26, y: 0.07}
+      - {x: -0.29, y: 0}
+      - {x: -0.29, y: -0.17}
+      - {x: -0.28, y: -0.22}
+      - {x: -0.24, y: -0.26}
+      - {x: -0.02, y: -0.26}
+      - {x: 0.089999996, y: -0.049999997}
+      - {x: 0.14999999, y: 0.13}
+      - {x: 0.19, y: 0.22999999}
+    - - {x: 0.21, y: 0.29}
+      - {x: 0.19, y: 0.26999998}
+      - {x: 0.19, y: 0.25}
+      - {x: 0.21, y: 0.22999999}
+      - {x: 0.22999999, y: 0.22999999}
+      - {x: 0.25, y: 0.25}
+      - {x: 0.25, y: 0.26999998}
+      - {x: 0.22999999, y: 0.29}
+    - - {x: -0.049999997, y: 0.32999998}
+      - {x: -0.07, y: 0.31}
+      - {x: -0.07, y: 0.29}
+      - {x: -0.049999997, y: 0.26999998}
+      - {x: -0.03, y: 0.26999998}
+      - {x: -0.01, y: 0.29}
+      - {x: -0.01, y: 0.31}
+      - {x: -0.03, y: 0.32999998}
+    - - {x: 0.25, y: 0.37}
+      - {x: 0.22999999, y: 0.35}
+      - {x: 0.22999999, y: 0.32999998}
+      - {x: 0.25, y: 0.31}
+      - {x: 0.26999998, y: 0.31}
+      - {x: 0.29, y: 0.32999998}
+      - {x: 0.29, y: 0.35}
+      - {x: 0.26999998, y: 0.37}
+    - - {x: 0.14, y: 0.34}
+      - {x: 0.22, y: 0.34}
+      - {x: 0.22999999, y: 0.35}
+      - {x: 0.22999999, y: 0.39}
+      - {x: 0.21, y: 0.41}
+      - {x: 0.14999999, y: 0.41}
+      - {x: 0.13, y: 0.39999998}
+      - {x: 0.13, y: 0.35}
+    - - {x: 0.049999997, y: 0.45}
+      - {x: 0, y: 0.45}
+      - {x: -0.01, y: 0.42999998}
+      - {x: -0.01, y: 0.38}
+      - {x: 0.02, y: 0.35999998}
+      - {x: 0.049999997, y: 0.35}
+      - {x: 0.08, y: 0.35}
+      - {x: 0.089999996, y: 0.37}
+      - {x: 0.089999996, y: 0.41}
+    - - {x: 0.37, y: 0.42}
+      - {x: 0.35, y: 0.39999998}
+      - {x: 0.35, y: 0.38}
+      - {x: 0.37, y: 0.35999998}
+      - {x: 0.39, y: 0.35999998}
+      - {x: 0.41, y: 0.38}
+      - {x: 0.41, y: 0.39999998}
+      - {x: 0.39, y: 0.42}
+    - - {x: 0.17, y: 0.48}
+      - {x: 0.14999999, y: 0.48}
+      - {x: 0.13, y: 0.45999998}
+      - {x: 0.13, y: 0.44}
+      - {x: 0.14, y: 0.41}
+      - {x: 0.26, y: 0.41}
+      - {x: 0.26999998, y: 0.42999998}
+      - {x: 0.26999998, y: 0.45999998}
+      - {x: 0.25, y: 0.47}
+    - - {x: 0.32999998, y: 0.5}
+      - {x: 0.32999998, y: 0.48}
+      - {x: 0.35, y: 0.45999998}
+      - {x: 0.37, y: 0.45999998}
+      - {x: 0.39, y: 0.48}
+      - {x: 0.39, y: 0.5}
 --- !u!114 &2518027318181199997
 MonoBehaviour:
   m_ObjectHideFlags: 0
