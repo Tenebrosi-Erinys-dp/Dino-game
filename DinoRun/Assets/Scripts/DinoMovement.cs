@@ -47,6 +47,7 @@ public class DinoMovement : MonoBehaviour
         // if dino hits literally something of tag sprite, start the death sequence and store the highscore
         if (collision.gameObject.tag == "IsSprite")
         {
+            gameObject.GetComponent<Animator>().SetInteger("State", 3);
             audioJump[1].Play(0);
             hadHighScore = true;
             highscoreT.SetActive(true);

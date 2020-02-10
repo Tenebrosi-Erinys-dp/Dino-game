@@ -1,5 +1,4 @@
-fix 100 points animation
-fix deathscreen positioning
+fix 100 points animation //
 fix sprite of death screen
 fix animation implementation of rest of assets needed
 fix sprite colors
