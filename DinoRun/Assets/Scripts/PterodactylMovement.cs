@@ -27,6 +27,8 @@ public class PterodactylMovement : MonoBehaviour
         if (collision.gameObject.tag == "IsSprite")
         {
             hit2 = true;
+            GetComponent<AudioSource>().Play();
+            GameObject.FindGameObjectWithTag("Music").GetComponent<LoopingMusic>().playing = false;
             StartCoroutine(Anim());
             
             gameObject.GetComponent<Animator>().SetInteger("State", 3);
