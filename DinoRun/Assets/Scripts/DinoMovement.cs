@@ -73,7 +73,7 @@ public class DinoMovement : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
         }
         // load the running animation and hitbox elsewhere
-        else
+        if (Input.GetAxis("Vertical") > sensitivity)
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 0);
             gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
