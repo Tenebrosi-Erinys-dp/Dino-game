@@ -7,17 +7,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Volcano : MonoBehaviour
 {
+    public float volspeed;
+    Rigidbody2D volcano;
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
+        volcano = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        volspeed = 10 + PointsCalculation.points / 5000f;
+        volcano.transform.Translate(Vector2.left * volspeed * 0.03f * Time.deltaTime);
     }
 }
