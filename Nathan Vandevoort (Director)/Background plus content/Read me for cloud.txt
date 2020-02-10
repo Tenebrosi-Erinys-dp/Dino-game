@@ -1,0 +1,1 @@
+Have the animation play quickly but with long pauses between each repetition

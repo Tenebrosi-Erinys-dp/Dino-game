@@ -1,20 +1,27 @@
-﻿using System.Collections;
+﻿/* ScoreText.cs
+ * By: Alex Dzius
+ * Last Edited: 2/10/2020
+ * Description: Code that allows the constant display of the score at any given time, and formats it correcly throughout the level.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreText : MonoBehaviour
 {
-    TextMesh myTM;
+    TextMesh scoretext;
     // Start is called before the first frame update
     void Start()
     {
-        myTM = GetComponent<TextMesh>();
-        myTM.text = 00000.ToString();
+        // get the score component and format the display of it correctly
+        scoretext = GetComponent<TextMesh>();
+        scoretext.text = 00000.ToString();
     }
-    // give outside objects an easy way to update
+    // give outside objects an easy way to update if needed as a seperate function to update
     public void UpdateScore()
     {
-        myTM.text = PointsCalculation.points.ToString("00000");
+        // constantly update the scoretext based on the current points
+        scoretext.text = PointsCalculation.points.ToString("00000");
     }
 
     // Update is called once per frame

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* TerrainGeneration.cs
+ * By: Alex Dzius
+ * Last Edited: 2/10/2020
+ * Description: Code that allows the generation of the chunks throughout the level, making sure that theres a constant supply of floor
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,19 +21,21 @@ public class TerrainGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // randomize the type of chunk to be spawned
         random = Random.Range(0, chunks.Length);
-        print(random);
-        // FIX SMALL GAPS INSERTION
+        // call a raycast to check if given position is empty
         RaycastHit2D hit = Physics2D.Linecast(new Vector3(4.9999999f, -3, 0), new Vector3(5, -3, 0), layermask);
+        // if so
         if(hit.collider == false)
         {
+            // generate terrain with the randomized chunk
             generateTerrain(random);
         }
        
     }
     void generateTerrain(int random)
     {
-        print(random);
-        Instantiate(chunks[random], new Vector3(10.65f, -3, 0), Quaternion.identity);
+        // generate the randomized chunk 
+        Instantiate(chunks[random], new Vector3(10.85f, -3, 0), Quaternion.identity);
     }
 }
