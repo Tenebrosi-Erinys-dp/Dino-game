@@ -18,9 +18,11 @@ public class DinoMovement : MonoBehaviour
     public Sprite running;
     public Sprite ducking;
     public Sprite dead;
-    public GameObject canvas;
+    public GameObject[] canvas;
+    public GameObject highscoreT;
+    public static bool hadHighScore = false;
     public GameObject whitesquare;
-    AudioSource audioJump;
+    AudioSource[] audioJump;
     public int count;
     private float sensitivity = 0.00001f;
     // Start is called before the first frame update
@@ -30,9 +32,10 @@ public class DinoMovement : MonoBehaviour
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
-        audioJump = GetComponent<AudioSource>();
+        audioJump = GetComponents<AudioSource>();
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
+        
 
     }
     // when the dino hits something
@@ -40,11 +43,15 @@ public class DinoMovement : MonoBehaviour
     {
         canJump = true;
         // stop the sound effect
-        audioJump.Stop();
+        audioJump[0].Stop();
         // if dino hits literally something of tag sprite, start the death sequence and store the highscore
         if (collision.gameObject.tag == "IsSprite")
         {
-            canvas.SetActive(true);
+            audioJump[1].Play(0);
+            hadHighScore = true;
+            highscoreT.SetActive(true);
+            canvas[0].SetActive(true);
+            canvas[1].SetActive(true);
             Time.timeScale = 0f;
             if (PointsCalculation.points > highscore)
             {
@@ -81,7 +88,7 @@ public class DinoMovement : MonoBehaviour
         canJump = false;
         if (Input.GetAxis("Vertical") > sensitivity)
         {
-            audioJump.Play(0);
+            audioJump[0].Play(0);
         }
         // if during the exit down is pressed, change the sprite to ducking sprite
         if (Input.GetAxis("Vertical") < -sensitivity)
@@ -94,6 +101,11 @@ public class DinoMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if there was a previous highscore in the game, use that as a highscore
+        if (hadHighScore == true)
+        {
+            highscoreT.SetActive(true);
+        }
         // at any given point where down is pressed, change the aimation to ducking
         if (Input.GetAxis("Vertical") < -sensitivity)
         {

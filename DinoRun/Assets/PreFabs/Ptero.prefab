@@ -118,7 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4061d7aa5ec8834dac36f7d4e0645cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas:
+  - {fileID: 0}
+  - {fileID: 0}
+  anim: {fileID: 0}
+  highscoreT: {fileID: 0}
 --- !u!61 &7031677456717166724
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -36,6 +36,6 @@ public class TerrainGeneration : MonoBehaviour
     void generateTerrain(int random)
     {
         // generate the randomized chunk 
-        Instantiate(chunks[random], new Vector3(10.65f, -3, 0), Quaternion.identity);
+        Instantiate(chunks[random], new Vector3(10.85f, -3, 0), Quaternion.identity);
     }
 }

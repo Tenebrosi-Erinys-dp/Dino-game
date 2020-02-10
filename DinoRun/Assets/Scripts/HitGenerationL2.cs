@@ -49,6 +49,7 @@ public class HitGenerationL2 : MonoBehaviour
             pterorandom = (int)Random.Range(-2, 0);
             // use the previous value to spawn the enermy pterodactyl at a given position
             Instantiate(ptero[0], new Vector3(13, pterorandom + .25f, 0), Quaternion.identity);
+            lastPtero = 0;
         }
 
     }
