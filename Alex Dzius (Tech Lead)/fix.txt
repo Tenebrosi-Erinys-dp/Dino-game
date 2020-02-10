@@ -1,8 +1,4 @@
-fix 100 points animation //
-fix sprite of death screen
 fix animation implementation of rest of assets needed
-fix sprite colors
 fix implementing sounds
-fix veloc level sprite and features
 fix calling death animation before timescale 0 on lvl2
 fix delaying of animations and collision detection on lvl3 & 2

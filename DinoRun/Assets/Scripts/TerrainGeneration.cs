@@ -24,7 +24,7 @@ public class TerrainGeneration : MonoBehaviour
         // randomize the type of chunk to be spawned
         random = Random.Range(0, chunks.Length);
         // call a raycast to check if given position is empty
-        RaycastHit2D hit = Physics2D.Linecast(new Vector3(4.9999999f, -3, 0), new Vector3(5, -3, 0), layermask);
+        RaycastHit2D hit = Physics2D.Linecast(new Vector3(4.9999999f, -2.94f, 0), new Vector3(5, -2.94f, 0), layermask);
         // if so
         if(hit.collider == false)
         {
@@ -36,6 +36,6 @@ public class TerrainGeneration : MonoBehaviour
     void generateTerrain(int random)
     {
         // generate the randomized chunk 
-        Instantiate(chunks[random], new Vector3(10.85f, -3, 0), Quaternion.identity);
+        Instantiate(chunks[random], new Vector3(10.85f, -2.94f, 0), Quaternion.identity);
     }
 }

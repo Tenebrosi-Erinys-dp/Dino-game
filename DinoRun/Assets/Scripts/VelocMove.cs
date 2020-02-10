@@ -20,7 +20,7 @@ public class VelocMove : MonoBehaviour
     public int count;
     private float sensitivity = 0.00001f;
     public static bool hit = false;
-    public bool jumping = false;
+    public bool jumped = false;
     public bool landed = false;
     // Start is called before the first frame update
     void Start()
@@ -38,13 +38,14 @@ public class VelocMove : MonoBehaviour
     public IEnumerator Landing()
     {
         gameObject.GetComponent<Animator>().SetInteger("State", 1);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
         landed = true;
     }
-    public IEnumerator Dying()
+    public IEnumerator Jumping()
     {
-        gameObject.GetComponent<Animator>().SetInteger("State", 1);
-        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<Animator>().SetInteger("State", 2);
+        yield return new WaitForSeconds(5f);
+        jumped = true;
     }
     // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,8 +53,6 @@ public class VelocMove : MonoBehaviour
         StartCoroutine(Landing());
         if (collision.gameObject.tag == "IsSprite")
         {
-            if (landed)
-            {
             landed = false;
             hit = true;
             gameObject.GetComponent<Animator>().SetInteger("State", 4);
@@ -64,7 +63,6 @@ public class VelocMove : MonoBehaviour
             if (PointsCalculation.points > DinoMovement.highscore)
             {
                 DinoMovement.highscore = PointsCalculation.points;
-            }
             }
         }
         print("enter collison");
@@ -97,18 +95,22 @@ public class VelocMove : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         // set the idle animation and call the jump sound
-        gameObject.GetComponent<Animator>().SetInteger("State", 2);
+        StartCoroutine(Jumping());
         canJump = false;
+        if (jumped)
+        {
         if (Input.GetAxis("Vertical") > sensitivity)
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 3);
             audioJump.Play(0);
+            jumped = false;
         }
         // if during the exit down is pressed, change the sprite to ducking sprite
         if (Input.GetAxis("Vertical") < -sensitivity)
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 3);
-
+            jumped = false;
+        }
         }
     }
 
@@ -164,26 +166,18 @@ public class VelocMove : MonoBehaviour
         // if 100 points are reached, repeatedly close and open the white block above the score to provide the animation
         if (PointsCalculation.points % 100 == 0 && PointsCalculation.points != 0)
         {
-            if (!hasFaded)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    StartCoroutine(Fade(whitesquare, 0.1f));
-
-                }
-                whitesquare.SetActive(false);
-            }
-
+            StartCoroutine(Fade(whitesquare));
         }
     }
 
-    public IEnumerator Fade(GameObject obj, float seconds)
+    public IEnumerator Fade(GameObject obj)
     {
-        hasFaded = true;
-        obj.SetActive(false);
-        yield return new WaitForSeconds(seconds);
-        obj.SetActive(true);
-        yield return new WaitForSeconds(0.1f); // Appear for one second
-        hasFaded = false;
+        for (int i = 0; i < 4; i++)
+        {
+            obj.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            whitesquare.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 }
