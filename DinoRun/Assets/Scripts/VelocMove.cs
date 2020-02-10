@@ -20,6 +20,8 @@ public class VelocMove : MonoBehaviour
     public int count;
     private float sensitivity = 0.00001f;
     public static bool hit = false;
+    public bool jumping = false;
+    public bool landing = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +35,19 @@ public class VelocMove : MonoBehaviour
         hit = false;
 
     }
+    public IEnumerator Landing()
+    {
+        gameObject.GetComponent<Animator>().SetInteger("State", 1);
+        yield return new WaitForSeconds(1f);
+    }
     // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        landing = true;
+        if (landing)
+        {
+            StartCoroutine(Landing());
+        }
         print("enter collison");
         canJump = true;
         gameObject.GetComponent<Animator>().SetInteger("State", 1);
