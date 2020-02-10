@@ -21,7 +21,7 @@ public class VelocMove : MonoBehaviour
     private float sensitivity = 0.00001f;
     public static bool hit = false;
     public bool jumping = false;
-    public bool landing = false;
+    public bool landed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,23 +39,22 @@ public class VelocMove : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetInteger("State", 1);
         yield return new WaitForSeconds(1f);
+        landed = true;
+    }
+    public IEnumerator Dying()
+    {
+        gameObject.GetComponent<Animator>().SetInteger("State", 1);
+        yield return new WaitForSeconds(1f);
     }
     // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        landing = true;
-        if (landing)
-        {
-            StartCoroutine(Landing());
-        }
-        print("enter collison");
-        canJump = true;
-        gameObject.GetComponent<Animator>().SetInteger("State", 1);
-        // stop the sound effect
-        audioJump.Stop();
-        // if dino hits literally something of tag sprite, start the death sequence and store the highscore
+        StartCoroutine(Landing());
         if (collision.gameObject.tag == "IsSprite")
         {
+            if (landed)
+            {
+            landed = false;
             hit = true;
             gameObject.GetComponent<Animator>().SetInteger("State", 4);
             canvas[0].SetActive(true);
@@ -66,8 +65,14 @@ public class VelocMove : MonoBehaviour
             {
                 DinoMovement.highscore = PointsCalculation.points;
             }
-
+            }
         }
+        print("enter collison");
+        canJump = true;
+        // stop the sound effect
+        audioJump.Stop();
+        // if dino hits literally something of tag sprite, start the death sequence and store the highscore
+        landed = false;
     }
     // when the dino is during a collision, which is during the ground
     private void OnCollisionStay2D(Collision2D collision)
