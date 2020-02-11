@@ -16,20 +16,24 @@ public class VelocMove : MonoBehaviour
     public GameObject[] canvas;
     public GameObject highscoreT;
     public GameObject whitesquare;
-    AudioSource audioJump;
     public int count;
     private float sensitivity = 0.00001f;
     public static bool hit = false;
     public bool jumped = false;
     public bool landed = false;
+    public AudioClip dinoDeathSound;
+    public AudioClip dinoJumpSound;
+    private AudioSource dinoJumpSource;
+    public bool invincible = false;
     // Start is called before the first frame update
     void Start()
     {
+        dinoJumpSource = gameObject.AddComponent<AudioSource>();
+        dinoJumpSource.clip = dinoJumpSound;
         // setup the right hitbox size, the right animation, audioclip, time and rigidbody.
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
-        audioJump = GetComponent<AudioSource>();
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
         hit = false;
@@ -44,15 +48,18 @@ public class VelocMove : MonoBehaviour
     public IEnumerator Jumping()
     {
         gameObject.GetComponent<Animator>().SetInteger("State", 2);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         jumped = true;
     }
     // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
     {
         StartCoroutine(Landing());
-        if (collision.gameObject.tag == "IsSprite")
+        if (collision.gameObject.tag == "IsSprite" && !invincible)
         {
+            AudioSource newAs = gameObject.AddComponent<AudioSource>();
+            newAs.clip = dinoDeathSound;
+            newAs.Play();
             landed = false;
             hit = true;
             gameObject.GetComponent<Animator>().SetInteger("State", 4);
@@ -64,11 +71,15 @@ public class VelocMove : MonoBehaviour
             {
                 DinoMovement.highscore = PointsCalculation.points;
             }
+            Destroy(newAs, newAs.clip.length);
+        }
+        if (!canJump)
+        {
+            GetComponent<SFXRandomContainer>().Play();
         }
         print("enter collison");
         canJump = true;
         // stop the sound effect
-        audioJump.Stop();
         // if dino hits literally something of tag sprite, start the death sequence and store the highscore
         landed = false;
     }
@@ -82,6 +93,7 @@ public class VelocMove : MonoBehaviour
             gameObject.GetComponent<Animator>().SetInteger("State", 5);
             gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 3f);
+            GetComponent<LoopingMusic>().Begin();
         }
         // load the running animation and hitbox elsewhere
         else
@@ -89,6 +101,7 @@ public class VelocMove : MonoBehaviour
             gameObject.GetComponent<Animator>().SetInteger("State", 0);
             gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
+            GetComponent<LoopingMusic>().Stop();
         }
     }
     // when the dino leaves a collision, during a jump
@@ -99,18 +112,17 @@ public class VelocMove : MonoBehaviour
         canJump = false;
         if (jumped)
         {
-        if (Input.GetAxis("Vertical") > sensitivity)
-        {
-            gameObject.GetComponent<Animator>().SetInteger("State", 3);
-            audioJump.Play(0);
-            jumped = false;
-        }
-        // if during the exit down is pressed, change the sprite to ducking sprite
-        if (Input.GetAxis("Vertical") < -sensitivity)
-        {
-            gameObject.GetComponent<Animator>().SetInteger("State", 3);
-            jumped = false;
-        }
+            if (Input.GetAxis("Vertical") > sensitivity)
+            {
+                gameObject.GetComponent<Animator>().SetInteger("State", 3);
+                jumped = false;
+            }
+            // if during the exit down is pressed, change the sprite to ducking sprite
+            if (Input.GetAxis("Vertical") < -sensitivity)
+            {
+                gameObject.GetComponent<Animator>().SetInteger("State", 3);
+                jumped = false;
+            }
         }
     }
 
@@ -128,22 +140,23 @@ public class VelocMove : MonoBehaviour
             gameObject.GetComponent<Animator>().SetInteger("State", 5);
         }
         // if jumping 
-        if (canJump == true)
+        if (canJump)
         {
             if (Input.GetAxis("Vertical") > sensitivity)
             {
+                print(Input.GetAxis("Vertical"));
                 // set the proper jump velocity and right hitbox
                 dino.velocity = new Vector3(0, 19.5f, 0);
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                 gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
-                if (Input.GetAxis("Vertical") < -sensitivity)
-                {
-                    // set the fall velocity and right hitbox
-                    dino.velocity = new Vector3(0, -10, 0);
-                    gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
-                    gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 3f);
-
-                }
+                dinoJumpSource.Play();
+            }
+            if (Input.GetAxis("Vertical") < -sensitivity)
+            {
+                // set the fall velocity and right hitbox
+                dino.velocity = new Vector3(0, -10, 0);
+                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
+                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 3f);
             }
         }
         // if ducking

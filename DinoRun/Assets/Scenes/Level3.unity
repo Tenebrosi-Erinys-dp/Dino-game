@@ -1025,6 +1025,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1194548546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194548538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58614aee4282d2a41a1ae5ea88acc47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  songFirst: {fileID: 8300000, guid: 30db1038ab7669e4cb770a1bf450cd2b, type: 3}
+  songLoop: {fileID: 8300000, guid: f8aaea44c1fb9054492552b0f529c55d, type: 3}
+  playing: 1
+  startScenePlaying: 0
+--- !u!114 &1194548547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194548538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802c4774985a0b14babf599ea1dbbdc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 5f39ab7dc90a3464c9d727723fc7d7be, type: 3}
+  - {fileID: 8300000, guid: e66e885e3f4fb9b41878dbbaba1a5fb7, type: 3}
+  - {fileID: 8300000, guid: 5e1a7f348b3852347ac29091904ec3b2, type: 3}
 --- !u!1 &1199016923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,6 +1628,21 @@ PrefabInstance:
       propertyPath: whitesquare
       value: 
       objectReference: {fileID: 644168971}
+    - target: {fileID: 2151398618127352141, guid: 742317730884b8f44bc8bd34162c2b82,
+        type: 3}
+      propertyPath: dinoDeathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 10387957a98c7634b948565404ef3ce8, type: 3}
+    - target: {fileID: 2151398618127352141, guid: 742317730884b8f44bc8bd34162c2b82,
+        type: 3}
+      propertyPath: dinoJumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b58562262fe7bc448b198e6259e6d692, type: 3}
+    - target: {fileID: 2151398618127352141, guid: 742317730884b8f44bc8bd34162c2b82,
+        type: 3}
+      propertyPath: invincible
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4939318336243662749, guid: 742317730884b8f44bc8bd34162c2b82,
         type: 3}
       propertyPath: m_Sprite
@@ -1680,7 +1727,7 @@ PrefabInstance:
     - target: {fileID: 8447274209074458276, guid: 742317730884b8f44bc8bd34162c2b82,
         type: 3}
       propertyPath: m_Constraints
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742317730884b8f44bc8bd34162c2b82, type: 3}

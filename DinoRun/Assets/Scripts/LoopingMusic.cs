@@ -9,29 +9,45 @@ public class LoopingMusic : MonoBehaviour
     public AudioClip songFirst;
     public AudioClip songLoop;
     public bool playing = true;
+    public bool startScenePlaying;
 
     void Start()
     {
         source = GetComponent<AudioSource>();
         source.clip = songFirst;
-        source.Play();
-        print("Playing");
+        if (startScenePlaying)
+        {
+            source.Play();
+        }
     }
 
     private void Update()
     {
-        print("Testing if playing");
         if (!source.isPlaying && playing)
         {
-            print("Not playing!");
             source.Stop();  
             source.clip = songLoop;
             source.Play();
         }
 
-        if (!playing)
+        if (!playing || !startScenePlaying)
         {
             source.Stop();
         }
+    }
+
+    public void Begin()
+    {
+        if (!startScenePlaying)
+        {
+            source.Play();
+        }
+        startScenePlaying = true;
+    }
+
+    public void Stop()
+    {
+        startScenePlaying = false;
+        source.Stop();
     }
 }
