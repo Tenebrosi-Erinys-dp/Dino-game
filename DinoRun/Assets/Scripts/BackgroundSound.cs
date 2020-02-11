@@ -20,8 +20,10 @@ public class BackgroundSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if one of the two background-including levels detect being hit by a enemy object
         if(VelocMove.hit == true || PterodactylMovement.hit2 == true)
         {
+            // stop the music
             background.Stop();
         }
     }

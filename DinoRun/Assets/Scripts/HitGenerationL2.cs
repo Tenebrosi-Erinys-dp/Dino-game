@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* HitGeneration.cs
+ * By: Alex Dzius
+ * Last Edited: 2/10/2020
+ * Description: Code that generates multiple sprites appearing throughout the game. Specifically designed for level 2 in order to make the enemy pterodactyls more of a threat.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +46,7 @@ public class HitGenerationL2 : MonoBehaviour
         {
             // spawn the cloud at a given randomized position
             Instantiate(cloud[0], new Vector3(13, (int)Random.Range(0, 4), 0), Quaternion.identity);
+            // set the timer = 0 at last position
             lastCloud = 0;
         }
         if (genrandom > 10 && genrandom < 30 && lastPtero > 100)
@@ -49,6 +55,7 @@ public class HitGenerationL2 : MonoBehaviour
             pterorandom = (int)Random.Range(-2, 0);
             // use the previous value to spawn the enermy pterodactyl at a given position
             Instantiate(ptero[0], new Vector3(13, pterorandom + .25f, 0), Quaternion.identity);
+            // set the timer = 0 at last position
             lastPtero = 0;
         }
 

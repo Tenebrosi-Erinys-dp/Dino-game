@@ -17,9 +17,11 @@ public class FireballMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randsound = (int)Random.Range(0, 3);
+        // set the fireball and animation
         Fireball = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
+        // randomize between 4 different sound effects for each fireball spawning
+        randsound = (int)Random.Range(0, 3);
         soundeffects = GetComponents<AudioSource>();
         soundeffects[randsound].Play(0);
     }

@@ -17,34 +17,38 @@ public class PterodactylMovement : MonoBehaviour
     public static bool hit2 = false;
     public enum States { Alive, NotAlive };
     public States currentStates;
-    // when the pterodactyl hits an enemy object
+
+    // iEnumerator to set the animation as intended as death is detected.
     public IEnumerator Death()
     {
-        print("in anim");
+        // adjust animations scale and call it
         gameObject.transform.localScale = new Vector3(.5f, .5f, .5f);
         gameObject.GetComponent<Animator>().SetInteger("State", 3);
+        // wait till animation is over
         yield return new WaitForSeconds(1f);
+        // stop all time
         Time.timeScale = 0f;
-        print("after anim");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // if object is a sprite, call the deathscreen and kill it
+        // if the current state is being alive
         if (currentStates == States.Alive)
         {
-            print("alive true");
+            // and if the collided object is an enemy sprite
             if (collision.gameObject.tag == "IsSprite")
             {
+                // set being dead to true and stop the background music
                 hit2 = true;
-                print("tagged true");
                 GameObject.FindGameObjectWithTag("Music").GetComponent<LoopingMusic>().playing = false;
                 currentStates = States.NotAlive;
                 StartCoroutine(Death());
                 print("after anim 2");
+                // play death sound
                 GetComponent<AudioSource>().Play();
-
+                // open the deathscreen
                 canvas[0].SetActive(true);
                 canvas[1].SetActive(true);
+                // set the highscore existing to true, and assign the highscore to it if it is a highscore
                 DinoMovement.hadHighScore = true;
                 if (PointsCalculation.points > DinoMovement.highscore)
                 {
@@ -57,9 +61,10 @@ public class PterodactylMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // set being alive or not dead to be true
         currentStates = States.Alive;
         hit2 = false;
-        // set the animation, time and rigidbody to the right state
+        // set the animation, time and rigidbody to the right state, and set time to be usual
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
@@ -70,6 +75,7 @@ public class PterodactylMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the object is not hit == currently alive
         if (hit2 == false)
         {
             float sensitivity = 0.00001f;

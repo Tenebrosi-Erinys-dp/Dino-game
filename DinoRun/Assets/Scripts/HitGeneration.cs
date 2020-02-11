@@ -46,6 +46,7 @@ public class HitGeneration : MonoBehaviour
         {
             // spawn the cloud at a given randomized position
             Instantiate(cloud[0], new Vector3(13, (int)Random.Range(0, 4), 0), Quaternion.identity);
+            // set the timer = 0 at last position
             lastCloud = 0;
         }
         if( genrandom > 10 && genrandom < 30 && lastPtero > 400)
@@ -54,6 +55,7 @@ public class HitGeneration : MonoBehaviour
             pterorandom = (int)Random.Range(-2, 0);
             // use the previous value to spawn the enermy pterodactyl at a given position
             Instantiate(ptero[0], new Vector3(13, pterorandom+.25f, 0), Quaternion.identity);
+            // set the timer = 0 at last position
             lastPtero = 0;
         }
 
