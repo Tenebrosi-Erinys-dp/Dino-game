@@ -338,6 +338,7 @@ MonoBehaviour:
   songFirst: {fileID: 8300000, guid: 772f0eee9e86a0a4fa469d2773851867, type: 3}
   songLoop: {fileID: 8300000, guid: 8306cbcc5d808e345a4133ab095a851e, type: 3}
   playing: 1
+  startScenePlaying: 0
 --- !u!82 &250469136
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2001,12 +2002,12 @@ PrefabInstance:
     - target: {fileID: 1740521356193163314, guid: c184222992198184abb2083cddb96c9b,
         type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1740521356193163314, guid: c184222992198184abb2083cddb96c9b,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2907462924588504241, guid: c184222992198184abb2083cddb96c9b,
         type: 3}
