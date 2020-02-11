@@ -57,8 +57,10 @@ public class VelocMove : MonoBehaviour
     {
         // call the animation, wait and adjust colliders, velocity and states
         gameObject.GetComponent<Animator>().SetInteger("State", 2);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         dino.velocity = new Vector3(0, 19.5f, 0);
+        yield return new WaitForSeconds(0.1f);
+        gameObject.GetComponent<Animator>().SetInteger("State", 3);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
         previousState = currentState;
@@ -107,6 +109,10 @@ public class VelocMove : MonoBehaviour
             {
                 // call jumping procedure
                 currentState = State.Jumping;
+                StartCoroutine(JumpAnim());
+                audioEffects[0].Play(0);
+                jumped = false;
+                previousState = State.Air;
             }
             // if you press down, call the ducking procedure
             if(Input.GetAxis("Vertical") < -sensitivity)
@@ -137,14 +143,6 @@ public class VelocMove : MonoBehaviour
     // when the dino leaves a collision, during a jump
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // set the jumping animation and call the jump sound
-        if(currentState == State.Jumping)
-        {
-            StartCoroutine(JumpAnim());
-            audioEffects[0].Play(0);
-            jumped = false;
-            previousState = State.Air;
-        }
         
     }
 
