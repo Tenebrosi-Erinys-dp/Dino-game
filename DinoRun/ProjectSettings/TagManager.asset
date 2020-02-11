@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - IsSprite
+  - Music
   layers:
   - Default
   - TransparentFX

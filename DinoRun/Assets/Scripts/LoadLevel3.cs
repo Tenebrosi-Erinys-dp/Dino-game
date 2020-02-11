@@ -1,7 +1,7 @@
 ﻿/* LoadLevel2.cs
  * By: Alex Dzius
  * Last Edited: 2/10/2020
- * Description: Code that allows the loading of Level 2, the velociraptor level. 
+ * Description: Code that allows the loading of Level 3, the velociraptor level. 
  */
 using System.Collections;
 using System.Collections.Generic;

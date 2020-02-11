@@ -12,7 +12,7 @@ public class DinoMovement : MonoBehaviour
 {
     Rigidbody2D dino;
     bool canJump = true;
-    private bool hasFaded = false;
+    public bool flashing = false;
     public static int highscore;
     public int temppoints;
     public Sprite running;
@@ -41,22 +41,28 @@ public class DinoMovement : MonoBehaviour
     // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // allow for the ability to jump
         canJump = true;
         // stop the sound effect
         audioJump[0].Stop();
         // if dino hits literally something of tag sprite, start the death sequence and store the highscore
         if (collision.gameObject.tag == "IsSprite")
         {
+            // play death sound
             audioJump[1].Play(0);
+            // open death screen and register a highscore to have existed
             hadHighScore = true;
             highscoreT.SetActive(true);
             canvas[0].SetActive(true);
             canvas[1].SetActive(true);
+            // stop time
             Time.timeScale = 0f;
+            // set new nighscore
             if (PointsCalculation.points > highscore)
             {
                 highscore = PointsCalculation.points;
             }
+            // call death sprite
             dino.GetComponent<SpriteRenderer>().sprite = dead;
 
         }
@@ -73,7 +79,7 @@ public class DinoMovement : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.3f);
         }
         // load the running animation and hitbox elsewhere
-        if (Input.GetAxis("Vertical") > sensitivity)
+        else
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 0);
             gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
@@ -111,7 +117,7 @@ public class DinoMovement : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().SetInteger("State", 3);
         }
-        // if jumping 
+        // if jumping is allowed 
         if (canJump == true)
         {
             if (Input.GetAxis("Vertical") > sensitivity)
@@ -147,29 +153,21 @@ public class DinoMovement : MonoBehaviour
             }
 
         }
-        // if 100 points are reached, repeatedly close and open the white block above the score to provide the animation
+        // if 100 points are reached,  close and open the white block 4 times over the score to provide the animation for reaching a milestone
         if (PointsCalculation.points % 100 == 0 && PointsCalculation.points != 0)
         {
-            if (!hasFaded)
-            {
-                for(int i = 0; i < 4; i++)
-                {
-                    StartCoroutine(Fade(whitesquare, 0.1f));
-                    
-                }
-                whitesquare.SetActive(false);
-            }
-            
+            StartCoroutine(Fade(whitesquare));
         }
     }
 
-    public IEnumerator Fade(GameObject obj, float seconds)
+    public IEnumerator Fade(GameObject obj)
     {
-        hasFaded = true;
-        obj.SetActive(false);
-        yield return new WaitForSeconds(seconds);
-        obj.SetActive(true);
-        yield return new WaitForSeconds(0.1f); // Appear for one second
-        hasFaded = false;
+        for (int i = 0; i < 4; i++)
+        {
+            obj.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            whitesquare.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 }

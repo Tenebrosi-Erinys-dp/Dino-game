@@ -21,12 +21,14 @@ public class FireballGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // counter per frame to prevent from overspawning objects
         lastBall++;
-        // generate a large number, and if a small range of numbers is hit, generate a fireball in a randomized position.
+        // generate a large number, and if a small range of numbers is hit and there wasnt a fireball recently, generate a fireball in a randomized position.
         genrandom = Random.Range(0, 12000);
         if(genrandom < 20 && lastBall > 100)
         {
             Instantiate(fireball[0], new Vector3(Random.Range(3, 10), 5, 0), Quaternion.identity);
+            // set the time from last ball to 0
             lastBall = 0;
         }
     }
