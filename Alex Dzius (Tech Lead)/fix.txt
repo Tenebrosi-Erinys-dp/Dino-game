@@ -1,4 +1,7 @@
-fix animation implementation of rest of assets needed
-fix implementing sounds
-fix calling death animation before timescale 0 on lvl2
-fix delaying of animations and collision detection on lvl3 & 2
+
+turn off sounds after death
+fix sound irregularities on lvl 3
+adjust landing and jumping animation
+comment code
+clean up names for things
+make titlescreen nice

@@ -13,38 +13,51 @@ public class PterodactylMovement : MonoBehaviour
     public GameObject[] canvas;
     public Animation anim;
     public GameObject highscoreT;
+    public bool ready = true;
     public static bool hit2 = false;
+    public enum States { Alive, NotAlive };
+    public States currentStates;
     // when the pterodactyl hits an enemy object
-    public IEnumerator Anim()
+    public IEnumerator Death()
     {
+        print("in anim");
+        gameObject.transform.localScale = new Vector3(.5f, .5f, .5f);
         gameObject.GetComponent<Animator>().SetInteger("State", 3);
-        yield return new WaitForSeconds(64f);
+        yield return new WaitForSeconds(1f);
         Time.timeScale = 0f;
+        print("after anim");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // if object is a sprite, call the deathscreen and kill it
-        if (collision.gameObject.tag == "IsSprite")
+        if (currentStates == States.Alive)
         {
-            hit2 = true;
-            GetComponent<AudioSource>().Play();
-            GameObject.FindGameObjectWithTag("Music").GetComponent<LoopingMusic>().playing = false;
-            StartCoroutine(Anim());
-            
-            gameObject.GetComponent<Animator>().SetInteger("State", 3);
+            print("alive true");
+            if (collision.gameObject.tag == "IsSprite")
+            {
+                hit2 = true;
+                print("tagged true");
+                GameObject.FindGameObjectWithTag("Music").GetComponent<LoopingMusic>().playing = false;
+                currentStates = States.NotAlive;
+                StartCoroutine(Death());
+                print("after anim 2");
+                GetComponent<AudioSource>().Play();
+
                 canvas[0].SetActive(true);
                 canvas[1].SetActive(true);
-            DinoMovement.hadHighScore = true;
-                Time.timeScale = 0f;
+                DinoMovement.hadHighScore = true;
                 if (PointsCalculation.points > DinoMovement.highscore)
                 {
-                    DinoMovement.highscore = PointsCalculation.points;
+                                DinoMovement.highscore = PointsCalculation.points;
                 }
+            }
         }
+        
     }
     // Start is called before the first frame update
     void Start()
     {
+        currentStates = States.Alive;
         hit2 = false;
         // set the animation, time and rigidbody to the right state
         dino = GetComponent<Rigidbody2D>();
@@ -57,7 +70,7 @@ public class PterodactylMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hit2)
+        if (hit2 == false)
         {
             float sensitivity = 0.00001f;
             // if there was a previous highscore in the game, use that as a highscore

@@ -48,10 +48,10 @@ public class HitGeneration : MonoBehaviour
             Instantiate(cloud[0], new Vector3(13, (int)Random.Range(0, 4), 0), Quaternion.identity);
             lastCloud = 0;
         }
-        if( genrandom > 10 && genrandom < 30 && lastPtero > 100)
+        if( genrandom > 10 && genrandom < 30 && lastPtero > 400)
         {
             // randomize the y position of the enemy pterodactyl as an int to only have 3 options
-            pterorandom = (int)Random.Range(-1, 3);
+            pterorandom = (int)Random.Range(-2, 0);
             // use the previous value to spawn the enermy pterodactyl at a given position
             Instantiate(ptero[0], new Vector3(13, pterorandom+.25f, 0), Quaternion.identity);
             lastPtero = 0;

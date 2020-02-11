@@ -10,50 +10,71 @@ using UnityEngine;
 public class VelocMove : MonoBehaviour
 {
     Rigidbody2D dino;
-    bool canJump = true;
-    private bool hasFaded = false;
     public int temppoints;
     public GameObject[] canvas;
     public GameObject highscoreT;
     public GameObject whitesquare;
-    AudioSource audioJump;
+    AudioSource[] audioEffects;
     public int count;
     private float sensitivity = 0.00001f;
     public static bool hit = false;
     public bool jumped = false;
     public bool landed = false;
+    public bool ducking = false;
+    public bool playing = false;
+    public bool isPlay = false;
+    public enum State { Jumping, Landing, Running, Ducking, Air };
+    public State currentState;
+    public State previousState;
+    public string state;
+    public float lasty;
     // Start is called before the first frame update
     void Start()
     {
+        previousState = State.Running;
+        currentState = State.Running;
         // setup the right hitbox size, the right animation, audioclip, time and rigidbody.
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
-        audioJump = GetComponent<AudioSource>();
+        audioEffects = GetComponents<AudioSource>();
         dino = GetComponent<Rigidbody2D>();
         Time.timeScale = 1f;
         hit = false;
 
     }
-    public IEnumerator Landing()
+    public IEnumerator LandAnim()
     {
         gameObject.GetComponent<Animator>().SetInteger("State", 1);
-        yield return new WaitForSeconds(5f);
-        landed = true;
+        yield return new WaitForSeconds(0.2f);
+        previousState = currentState;
+        currentState = State.Running;
     }
-    public IEnumerator Jumping()
+    public IEnumerator JumpAnim()
     {
         gameObject.GetComponent<Animator>().SetInteger("State", 2);
-        yield return new WaitForSeconds(5f);
-        jumped = true;
+        yield return new WaitForSeconds(0.5f);
+        dino.velocity = new Vector3(0, 19.5f, 0);
+        gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
+        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
+        previousState = currentState;
+        currentState = State.Air;
     }
     // when the dino hits something
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StartCoroutine(Landing());
+        if(currentState == State.Air)
+        {
+            currentState = State.Landing;
+        StartCoroutine(LandAnim());
+            // if dino hits literally something of tag sprite, start the death sequence and store the highscore
+            
+        print("enter collison");
+            // stop the sound effect
+        }
         if (collision.gameObject.tag == "IsSprite")
         {
-            landed = false;
+            GameObject.FindGameObjectWithTag("Music").GetComponent<LoopingMusic>().playing = false;
             hit = true;
             gameObject.GetComponent<Animator>().SetInteger("State", 4);
             canvas[0].SetActive(true);
@@ -64,109 +85,69 @@ public class VelocMove : MonoBehaviour
             {
                 DinoMovement.highscore = PointsCalculation.points;
             }
+            audioEffects[0].Stop();
+            audioEffects[1].Stop();
         }
-        print("enter collison");
-        canJump = true;
-        // stop the sound effect
-        audioJump.Stop();
-        // if dino hits literally something of tag sprite, start the death sequence and store the highscore
-        landed = false;
+
+
+
+
     }
     // when the dino is during a collision, which is during the ground
     private void OnCollisionStay2D(Collision2D collision)
     {
-        canJump = true;
-        // load the ducking animation and hitbox if down is pressed
-        if (Input.GetAxis("Vertical") < -sensitivity)
+        print("test");
+        if(currentState == State.Running || currentState == State.Ducking)
         {
-            gameObject.GetComponent<Animator>().SetInteger("State", 5);
-            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
-            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 3f);
-        }
-        // load the running animation and hitbox elsewhere
-        else
-        {
-            gameObject.GetComponent<Animator>().SetInteger("State", 0);
-            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
-            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
+            if(Input.GetAxis("Vertical") > sensitivity)
+            {
+                currentState = State.Jumping;
+            }
+            if(Input.GetAxis("Vertical") < -sensitivity)
+            {
+                dino.velocity = new Vector3(0, -10, 0);
+                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
+                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 3f);
+                currentState = State.Ducking;
+            }
+            if(previousState != State.Ducking && currentState == State.Ducking)
+            {
+                gameObject.GetComponent<Animator>().SetInteger("State", 5);
+                audioEffects[1].Play(0);
+            }
+            if (previousState != State.Running && currentState == State.Running)
+            {
+                gameObject.GetComponent<Animator>().SetInteger("State", 0);
+            }
+            previousState = currentState;
         }
     }
     // when the dino leaves a collision, during a jump
     private void OnCollisionExit2D(Collision2D collision)
     {
         // set the idle animation and call the jump sound
-        StartCoroutine(Jumping());
-        canJump = false;
-        if (jumped)
+        if(currentState == State.Jumping)
         {
-        if (Input.GetAxis("Vertical") > sensitivity)
-        {
-            gameObject.GetComponent<Animator>().SetInteger("State", 3);
-            audioJump.Play(0);
+            StartCoroutine(JumpAnim());
+            audioEffects[0].Play(0);
             jumped = false;
+        previousState = State.Air;
         }
-        // if during the exit down is pressed, change the sprite to ducking sprite
-        if (Input.GetAxis("Vertical") < -sensitivity)
-        {
-            gameObject.GetComponent<Animator>().SetInteger("State", 3);
-            jumped = false;
-        }
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if there was a previous highscore in the game, use that as a highscore
-        if (DinoMovement.hadHighScore == true)
-        {
-            highscoreT.SetActive(true);
-        }
-        // at any given point where down is pressed, change the aimation to ducking
-        if (Input.GetAxis("Vertical") < -sensitivity)
-        {
-            gameObject.GetComponent<Animator>().SetInteger("State", 5);
-        }
-        // if jumping 
-        if (canJump == true)
-        {
-            if (Input.GetAxis("Vertical") > sensitivity)
-            {
-                // set the proper jump velocity and right hitbox
-                dino.velocity = new Vector3(0, 19.5f, 0);
-                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
-                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
-                if (Input.GetAxis("Vertical") < -sensitivity)
-                {
-                    // set the fall velocity and right hitbox
-                    dino.velocity = new Vector3(0, -10, 0);
-                    gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
-                    gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 3f);
-
-                }
-            }
-        }
-        // if ducking
-        if (Input.GetAxis("Vertical") < -sensitivity)
-        {
-            // set the fall velocity and right hitbox
-            dino.velocity = new Vector3(0, -10, 0);
-            gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.5f);
-            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 3f);
-            gameObject.GetComponent<Animator>().SetInteger("State", 5);
-            if (Input.GetAxis("Vertical") > sensitivity)
-            {
-                // set the proper jump velocity and right hitbox
-                dino.velocity = new Vector3(0, 19.5f, 0);
-                gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
-                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(5f, 4f);
-            }
-
-        }
         // if 100 points are reached, repeatedly close and open the white block above the score to provide the animation
         if (PointsCalculation.points % 100 == 0 && PointsCalculation.points != 0)
         {
             StartCoroutine(Fade(whitesquare));
+        }
+        // if there was a previous highscore in the game, use that as a highscore
+        if (DinoMovement.hadHighScore == true)
+        {
+            highscoreT.SetActive(true);
         }
     }
 

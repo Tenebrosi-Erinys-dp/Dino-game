@@ -9,14 +9,19 @@ using UnityEngine;
 
 public class FireballMovement : MonoBehaviour
 {
+    public AudioSource[] soundeffects;
+    public int randsound;
     // use the speed and fireball and get both as needed
     public float speed = 10.0f;
     Rigidbody2D Fireball;
     // Start is called before the first frame update
     void Start()
     {
+        randsound = (int)Random.Range(0, 3);
         Fireball = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
+        soundeffects = GetComponents<AudioSource>();
+        soundeffects[randsound].Play(0);
     }
 
     // Update is called once per frame

@@ -24,5 +24,9 @@ public class Volcano : MonoBehaviour
     {
         volspeed = 10 + PointsCalculation.points / 5000f;
         volcano.transform.Translate(Vector2.left * volspeed * 0.03f * Time.deltaTime);
+        if(transform.position.x < -8)
+        {
+            volcano.transform.position = new Vector2(8, transform.position.y);
+        }
     }
 }
