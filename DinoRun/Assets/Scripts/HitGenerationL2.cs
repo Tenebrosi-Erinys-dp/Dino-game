@@ -33,7 +33,7 @@ public class HitGenerationL2 : MonoBehaviour
         lastPtero++;
         // randomize a large number, and if a certain range inside the number is hit
         genrandom = Random.Range(0, 12000);
-        if (genrandom > 50 && genrandom < 140 && lastCact > 125)
+        if (genrandom > 50 && genrandom < 140 && lastCact > 225)
         {
             // randomize the type of cactus
             random = Random.Range(0, cactees.Length);
@@ -49,7 +49,7 @@ public class HitGenerationL2 : MonoBehaviour
             // set the timer = 0 at last position
             lastCloud = 0;
         }
-        if (genrandom > 10 && genrandom < 30 && lastPtero > 100)
+        if (genrandom > 10 && genrandom < 30 && lastPtero > 500)
         {
             // randomize the y position of the enemy pterodactyl as an int to only have 3 options
             pterorandom = (int)Random.Range(-2, 0);

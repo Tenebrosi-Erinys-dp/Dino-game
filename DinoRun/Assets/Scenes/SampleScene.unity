@@ -360,11 +360,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9215918849810911757, guid: eeac238471e780741a53f6dcd4bda107,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215918849810911757, guid: eeac238471e780741a53f6dcd4bda107,
-        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
@@ -546,11 +541,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.745
-      objectReference: {fileID: 0}
-    - target: {fileID: 6349927801661606448, guid: d2caecd5d5ad68642a58768fc736ec4d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.904
       objectReference: {fileID: 0}
     - target: {fileID: 6349927801661606448, guid: d2caecd5d5ad68642a58768fc736ec4d,
         type: 3}
@@ -1109,7 +1099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 95, y: 163}
+  m_AnchoredPosition: {x: 194, y: 307.5}
   m_SizeDelta: {x: 160, y: 107.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393412103
@@ -1132,10 +1122,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 646771c35b8f8a7439264e3295bc138c, type: 3}
-    m_FontSize: 43
+    m_FontSize: 84
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 8
     m_MaxSize: 99
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1253,7 +1243,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!224 &1394200249
 RectTransform:
@@ -2168,11 +2158,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215918849810911757, guid: eeac238471e780741a53f6dcd4bda107,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 9215918849810911757, guid: eeac238471e780741a53f6dcd4bda107,
         type: 3}

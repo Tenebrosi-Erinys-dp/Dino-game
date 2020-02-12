@@ -55,6 +55,8 @@ public class DinoMovement : MonoBehaviour
             highscoreT.SetActive(true);
             canvas[0].SetActive(true);
             canvas[1].SetActive(true);
+            gameObject.transform.localScale = new Vector3(2f,2f,2f);
+            gameObject.GetComponent<Animator>().SetInteger("State", 4);
             // stop time
             Time.timeScale = 0f;
             // set new nighscore
@@ -123,7 +125,7 @@ public class DinoMovement : MonoBehaviour
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // set the proper jump velocity and right hitbox
-                dino.velocity = new Vector3(0, 19.5f, 0);
+                dino.velocity = new Vector3(0, 15.5f, 0);
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                 gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
                 if (Input.GetAxis("Vertical") < -sensitivity)
@@ -147,7 +149,7 @@ public class DinoMovement : MonoBehaviour
             if (Input.GetAxis("Vertical") > sensitivity)
             {
                 // set the proper jump velocity and right hitbox
-                dino.velocity = new Vector3(0, 19.5f, 0);
+                dino.velocity = new Vector3(0, 15.5f, 0);
                 gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0f, 0f);
                 gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.8f, 0.8f);
             }

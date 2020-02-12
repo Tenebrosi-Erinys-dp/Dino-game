@@ -57,7 +57,6 @@ public class VelocMove : MonoBehaviour
     {
         // call the animation, wait and adjust colliders, velocity and states
         gameObject.GetComponent<Animator>().SetInteger("State", 2);
-        yield return new WaitForSeconds(0.2f);
         dino.velocity = new Vector3(0, 19.5f, 0);
         yield return new WaitForSeconds(0.1f);
         gameObject.GetComponent<Animator>().SetInteger("State", 3);
@@ -86,6 +85,7 @@ public class VelocMove : MonoBehaviour
             canvas[0].SetActive(true);
             canvas[1].SetActive(true);
             highscoreT.SetActive(true);
+            audioEffects[2].Play(0);
             // stop time
             Time.timeScale = 0f;
             // set the highscore to have existed, and if the points are higher than the highscore, set those points as highscore
@@ -135,6 +135,7 @@ public class VelocMove : MonoBehaviour
             {
                 // change animation to running
                 gameObject.GetComponent<Animator>().SetInteger("State", 0);
+                audioEffects[1].Stop();
             }
             // store the state
             previousState = currentState;

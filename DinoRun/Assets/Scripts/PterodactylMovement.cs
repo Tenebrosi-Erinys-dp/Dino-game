@@ -12,6 +12,7 @@ public class PterodactylMovement : MonoBehaviour
     Rigidbody2D dino;
     public GameObject[] canvas;
     public Animation anim;
+    public AudioSource[] pterosound;
     public GameObject highscoreT;
     public bool ready = true;
     public static bool hit2 = false;
@@ -44,10 +45,12 @@ public class PterodactylMovement : MonoBehaviour
                 StartCoroutine(Death());
                 print("after anim 2");
                 // play death sound
-                GetComponent<AudioSource>().Play();
+                pterosound[0].Play();
                 // open the deathscreen
                 canvas[0].SetActive(true);
+                print("canvas1");
                 canvas[1].SetActive(true);
+                print("canvas2");
                 // set the highscore existing to true, and assign the highscore to it if it is a highscore
                 DinoMovement.hadHighScore = true;
                 if (PointsCalculation.points > DinoMovement.highscore)
@@ -69,7 +72,7 @@ public class PterodactylMovement : MonoBehaviour
         Time.timeScale = 1f;
         gameObject.GetComponent<Animator>().SetInteger("State", 0);
         anim = gameObject.GetComponent<Animation>();
-
+        pterosound = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -91,22 +94,23 @@ public class PterodactylMovement : MonoBehaviour
                 if (Input.GetAxis("Vertical") > sensitivity)
                 {
                     // fly up and call fly up animation
+                    pterosound[1].Play();
                     dino.velocity = new Vector3(0, 4, 0);
-                    gameObject.GetComponent<Animator>().SetInteger("State", 1);
-                }
-                // if down is pressed
-                else if (Input.GetAxis("Vertical") < -sensitivity)
-                {
-                    // fly down and call fly down animation
-                    dino.velocity = new Vector3(0, -4, 0);
-                    gameObject.GetComponent<Animator>().SetInteger("State", 2);
-                }
-                else
-                {
-                    // keep the idle animation and keep constant motion 
-                    gameObject.GetComponent<Animator>().SetInteger("State", 0);
-                    dino.velocity = new Vector3(0, 0, 0);
-                }
+                gameObject.GetComponent<Animator>().SetInteger("State", 1);
+            }
+            // if down is pressed
+            else if (Input.GetAxis("Vertical") < -sensitivity)
+            {
+                // fly down and call fly down animation
+                dino.velocity = new Vector3(0, -4, 0);
+                gameObject.GetComponent<Animator>().SetInteger("State", 2);
+            }
+            else
+            {
+                // keep the idle animation and keep constant motion 
+                gameObject.GetComponent<Animator>().SetInteger("State", 0);
+                dino.velocity = new Vector3(0, 0, 0);
+            }
             }
             // if the dino reaches the roof
             else

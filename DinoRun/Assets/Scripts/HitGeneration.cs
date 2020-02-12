@@ -33,7 +33,7 @@ public class HitGeneration : MonoBehaviour
         lastPtero++;
         // randomize a large number, and if a certain range inside the number is hit
         genrandom = Random.Range(0, 12000);
-        if (genrandom > 50 && genrandom < 140 && lastCact > 125)
+        if (genrandom > 50 && genrandom < 140 && lastCact > 105)
         {
             // randomize the type of cactus
             random = Random.Range(0, cactees.Length);
