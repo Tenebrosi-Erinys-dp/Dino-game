@@ -27,6 +27,7 @@ public class ScoreText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // update score
         UpdateScore();
     }
 }

@@ -15,13 +15,16 @@ public class HighScore : MonoBehaviour
     {
         // get the text component and start it with right formatting
         HSText = GetComponent<Text>();
-        HSText.text = 00000.ToString();
+        // if HSText is an open object, then print [dont if inactive]
+        if(HSText != null)
+            HSText.text = 00000.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // set the text to the current highscore
-        HSText.text = "HI: " + DinoMovement.highscore.ToString("00000");
+        // set the text to the current highscore if object is active
+        if (HSText != null)
+            HSText.text = "HI: " + DinoMovement.highscore.ToString("00000");
     }
 }

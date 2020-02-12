@@ -1,0 +1,7 @@
+
+turn off sounds after death
+fix sound irregularities on lvl 3
+adjust landing and jumping animation
+comment code
+clean up names for things
+make titlescreen nice
